@@ -1,6 +1,20 @@
 {
   "updatedNote": "Illustrative snapshots for layout demos — verify titles, limits, and prices inside your LongFu88 account.",
   "slots": {
+    "topProvidersTitle": "Top slot studios",
+    "topProvidersSubtitle": "Providers players filter for most often in Asian lobbies — illustrative marks, not official branding.",
+    "topProviders": [
+      { "id": "pg-soft", "name": "PG Soft", "logo": "images/providers/pg-soft.svg" },
+      { "id": "pragmatic-play", "name": "Pragmatic Play", "logo": "images/providers/pragmatic-play.svg" },
+      { "id": "relax-gaming", "name": "Relax Gaming", "logo": "images/providers/relax-gaming.svg" },
+      { "id": "hacksaw", "name": "Hacksaw Gaming", "logo": "images/providers/hacksaw.svg" },
+      { "id": "fa-chai", "name": "Fa Chai", "logo": "images/providers/fa-chai.svg" },
+      { "id": "jili", "name": "JILI", "logo": "images/providers/jili.svg" },
+      { "id": "cq9", "name": "CQ9", "logo": "images/providers/cq9.svg" },
+      { "id": "spadegaming", "name": "Spadegaming", "logo": "images/providers/spadegaming.svg" },
+      { "id": "ka-gaming", "name": "Ka Gaming", "logo": "images/providers/ka-gaming.svg" },
+      { "id": "playstar", "name": "PlayStar", "logo": "images/providers/playstar.svg" }
+    ],
     "shelves": [
       {
         "id": "megaways",
@@ -73,6 +87,18 @@
     ]
   },
   "liveCasino": {
+    "topProvidersTitle": "Top live casino providers",
+    "topProvidersSubtitle": "Stream networks behind baccarat, roulette & shows — demo tiles; verify studio badges in your LongFu88 lobby.",
+    "topProviders": [
+      { "id": "evolution", "name": "Evolution", "logo": "images/providers/evolution.svg" },
+      { "id": "pragmatic-live", "name": "Pragmatic Live", "logo": "images/providers/pragmatic-live.svg" },
+      { "id": "ezugi", "name": "Ezugi", "logo": "images/providers/ezugi.svg" },
+      { "id": "playtech-live", "name": "Playtech Live", "logo": "images/providers/playtech-live.svg" },
+      { "id": "asia-gaming", "name": "Asia Gaming", "logo": "images/providers/asia-gaming.svg" },
+      { "id": "sa-gaming", "name": "SA Gaming", "logo": "images/providers/sa-gaming.svg" },
+      { "id": "wm-live", "name": "WM Casino", "logo": "images/providers/wm-live.svg" },
+      { "id": "dream-gaming", "name": "Dream Gaming", "logo": "images/providers/dream-gaming.svg" }
+    ],
     "shelves": [
       {
         "id": "baccarat",

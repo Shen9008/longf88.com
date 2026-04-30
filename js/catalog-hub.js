@@ -17,6 +17,60 @@
             .replace(/'/g, '&#39;');
     }
 
+    function renderProviderStrip(bundle, mount, bundleKey) {
+        var list = bundle.topProviders;
+        if (!list || !list.length) return;
+
+        var headingId =
+            'provider-strip-' +
+            String(bundleKey || 'catalog')
+                .replace(/[^a-zA-Z0-9]/g, '-')
+                .replace(/-+/g, '-')
+                .replace(/^-|-$/g, '')
+                .toLowerCase();
+        var section = document.createElement('section');
+        section.className = 'provider-strip';
+        section.setAttribute('aria-labelledby', headingId);
+
+        var hdr = document.createElement('header');
+        hdr.className = 'provider-strip__header';
+        var h2 = document.createElement('h2');
+        h2.className = 'provider-strip__title';
+        h2.id = headingId;
+        h2.textContent = bundle.topProvidersTitle || 'Top providers';
+        hdr.appendChild(h2);
+        if (bundle.topProvidersSubtitle) {
+            var sub = document.createElement('p');
+            sub.className = 'provider-strip__subtitle';
+            sub.textContent = bundle.topProvidersSubtitle;
+            hdr.appendChild(sub);
+        }
+        section.appendChild(hdr);
+
+        var ul = document.createElement('ul');
+        ul.className = 'provider-strip__list';
+
+        list.forEach(function (pr) {
+            var logoSrc = pr.logo || 'images/providers/' + (pr.id || 'unknown') + '.svg';
+            var li = document.createElement('li');
+            var figure = document.createElement('figure');
+            figure.className = 'provider-card';
+            var img = document.createElement('img');
+            img.src = logoSrc;
+            img.alt = pr.name ? pr.name + ' (illustrative mark)' : '';
+            img.width = 176;
+            img.height = 48;
+            img.loading = 'lazy';
+            img.decoding = 'async';
+            figure.appendChild(img);
+            li.appendChild(figure);
+            ul.appendChild(li);
+        });
+
+        section.appendChild(ul);
+        mount.appendChild(section);
+    }
+
     function renderGameShelves(mount, bundleKey, data) {
         const bundle = data[bundleKey];
         const shelves = bundle && bundle.shelves ? bundle.shelves : [];
@@ -24,6 +78,8 @@
         note.className = 'catalog-disclaimer';
         note.textContent = data.updatedNote || '';
         mount.appendChild(note);
+
+        renderProviderStrip(bundle, mount, bundleKey);
 
         shelves.forEach(function (shelf) {
             const sid = 'shelf-' + String(shelf.id || 'row').replace(/[^a-z0-9-]/gi, '-');

@@ -1,0 +1,159 @@
+{
+  "updatedNote": "Illustrative snapshots for layout demos — verify titles, limits, and prices inside your LongFu88 account.",
+  "slots": {
+    "shelves": [
+      {
+        "id": "megaways",
+        "title": "Popular Megaways-style picks",
+        "subtitle": "High-variable reel layouts players often filter first in Asian lobbies.",
+        "games": [
+          { "name": "Golden Charge Ways", "provider": "PG Soft", "tag": "Megaways", "hue": "gold", "hint": "Wild multipliers on cascading reels" },
+          { "name": "Lotus Lantern Ways", "provider": "Pragmatic Play", "tag": "Megaways", "hue": "rose", "hint": "Bonus buys where regulators allow" },
+          { "name": "Desert Storm Ways", "provider": "Relax Gaming", "tag": "Megaways", "hue": "sand", "hint": "Ante-bet toggles common" },
+          { "name": "Neon Samurai Ways", "provider": "Hacksaw", "tag": "Megaways", "hue": "neon", "hint": "Volatile math — split stakes" }
+        ]
+      },
+      {
+        "id": "hold-spin",
+        "title": "Hold & spin favourites",
+        "subtitle": "Coins and respin arcs players chase during promo wagering.",
+        "games": [
+          { "name": "Emperor Coins", "provider": "PG Soft", "tag": "Hold & spin", "hue": "ruby", "hint": "Grand jackpot tiers" },
+          { "name": "Lantern Lock", "provider": "Fa Chai", "tag": "Hold & spin", "hue": "amber", "hint": "Sticky mystery symbols" },
+          { "name": "Temple Fortune Hold", "provider": "JILI", "tag": "Hold & spin", "hue": "jade", "hint": "Turbo mode friendly on LTE" }
+        ]
+      },
+      {
+        "id": "arcade-fish",
+        "title": "Arcade & fishing floors",
+        "subtitle": "Skill-ish shooters still carry heavy variance — budget separately.",
+        "games": [
+          { "name": "Reef Strike", "provider": "Spadegaming", "tag": "Fishing", "hue": "ocean", "hint": "Boss rounds spike RTP swings" },
+          { "name": "Dragon Hunter X", "provider": "CQ9", "tag": "Arcade", "hue": "crimson", "hint": "Ammo coupons burn quickly" },
+          { "name": "Thunder Fishing", "provider": "PlayStar", "tag": "Fishing", "hue": "azure", "hint": "Mobile portrait optimised" }
+        ]
+      },
+      {
+        "id": "classic-fruits",
+        "title": "Classic & fruit routes",
+        "subtitle": "Lower feature noise when you want predictable pacing.",
+        "games": [
+          { "name": "Lucky 777 Deluxe", "provider": "Fa Chai", "tag": "Classic", "hue": "cherry", "hint": "Straightforward lines" },
+          { "name": "Cherry Blaze", "provider": "Ka Gaming", "tag": "Fruit", "hue": "pink", "hint": "Medium volatility cluster" },
+          { "name": "Royal Bars", "provider": "CQ9", "tag": "Classic", "hue": "slate", "hint": "Quick sessions on commute" }
+        ]
+      }
+    ]
+  },
+  "liveCasino": {
+    "shelves": [
+      {
+        "id": "baccarat",
+        "title": "Top baccarat streams",
+        "subtitle": "Check squeeze vs speed variants before you buy in.",
+        "games": [
+          { "name": "Prestige Baccarat A", "provider": "Evolution-style pit", "tag": "Baccarat", "hue": "ruby", "hint": "Wide stake rails" },
+          { "name": "Speed Baccarat 12", "provider": "Pragmatic Live", "tag": "Speed bac", "hue": "wine", "hint": "Fast shoe turnover" },
+          { "name": "No-Commission Bac", "provider": "Asia-facing studio", "tag": "No comm", "hue": "gold", "hint": "Different payout chart" },
+          { "name": "Dragon Bonus Table", "provider": "Ezugi lane", "tag": "Side bets", "hue": "emerald", "hint": "Side bets swing harder" }
+        ]
+      },
+      {
+        "id": "roulette",
+        "title": "Roulette favourites",
+        "subtitle": "European wheels vs presenter-led variants.",
+        "games": [
+          { "name": "Immersive European", "provider": "Evolution-style", "tag": "European", "hue": "wine", "hint": "Slow-motion replays" },
+          { "name": "Auto Roulette Classic", "provider": "Pragmatic Live", "tag": "Auto", "hue": "slate", "hint": "Great for low latency" },
+          { "name": "Lightning-style Wheel", "provider": "Presenter show", "tag": "RNG boosts", "hue": "neon", "hint": "Multiplier segments" }
+        ]
+      },
+      {
+        "id": "blackjack",
+        "title": "Blackjack pits",
+        "subtitle": "Peek bet-behind limits before you queue.",
+        "games": [
+          { "name": "Blackjack Azure A", "provider": "Pragmatic Live", "tag": "7-seat", "hue": "ocean", "hint": "Bet behind enabled" },
+          { "name": "VIP Blackjack North", "provider": "Evolution-style", "tag": "High limits", "hue": "gold", "hint": "Higher mins evenings" },
+          { "name": "Speed Blackjack Q", "provider": "Ezugi lane", "tag": "Speed", "hue": "ruby", "hint": "Decision timers tight" }
+        ]
+      },
+      {
+        "id": "shows",
+        "title": "Game shows & dice",
+        "subtitle": "Presenter-led rides — watch bonus round cadence first.",
+        "games": [
+          { "name": "Wheel Fortune Live", "provider": "Presenter format", "tag": "Wheel", "hue": "sunset", "hint": "Bonus heavy swings" },
+          { "name": "Dice Tower Party", "provider": "Asia studio", "tag": "Dice", "hue": "amber", "hint": "Community multipliers" },
+          { "name": "Boom City Style", "provider": "Hybrid RNG", "tag": "Crash vibe", "hue": "neon", "hint": "Treat like volatile slots" }
+        ]
+      }
+    ]
+  },
+  "sports": {
+    "popularTypes": [
+      { "name": "Football", "abbr": "SOC", "note": "Asian handicap core volume" },
+      { "name": "Basketball", "abbr": "BK", "note": "Totals & quarters busy overnight" },
+      { "name": "Esports", "abbr": "ES", "note": "MOBA & FPS ladders when live" },
+      { "name": "Tennis", "abbr": "TN", "note": "In-play swings set by set" },
+      { "name": "Badminton", "abbr": "BD", "note": "Strong APAC liquidity on majors" },
+      { "name": "Cricket", "abbr": "CR", "note": "T20 & IPL cycles spike tickets" },
+      { "name": "Volleyball", "abbr": "VB", "note": "Live momentum markets" },
+      { "name": "Baseball", "abbr": "BB", "note": "Pitcher props depth varies" }
+    ],
+    "topLeagues": [
+      { "name": "English Premier League", "region": "EU", "hook": "Prime-time handicaps + totals" },
+      { "name": "UEFA Champions League", "region": "EU", "hook": "Knockout swings attract sharp tickets" },
+      { "name": "La Liga", "region": "EU", "hook": "Asian lines mirror liquidity hubs" },
+      { "name": "Serie A", "region": "EU", "hook": "Deep corners & cards markets" },
+      { "name": "J1 League", "region": "Asia", "hook": "Friendly kick-off windows regionally" },
+      { "name": "K League", "region": "Asia", "hook": "Live ladders during regional evenings" },
+      { "name": "Chinese Super League", "region": "Asia", "hook": "Domestic TV cycles drive casual tickets" },
+      { "name": "NBA", "region": "US", "note": "Spreads & player props heavy", "hook": "Quarter-by-quarter ladders" }
+    ],
+    "upcoming": [
+      {
+        "kickoff": "Sat · 22:00",
+        "home": "Northgate FC",
+        "away": "Harbour City SC",
+        "league": "Demo Premier",
+        "odds1x2": { "home": "2.05", "draw": "3.40", "away": "3.60" },
+        "handicapDemo": "Home -0.5 @ 1.92",
+        "read": "Illustrative decimal snapshot — favourite priced ~49% implied before vig."
+      },
+      {
+        "kickoff": "Sun · 01:30",
+        "home": "Metro Dragons",
+        "away": "Lakefront United",
+        "league": "Demo Champions Cup",
+        "odds1x2": { "home": "1.72", "draw": "3.75", "away": "4.80" },
+        "handicapDemo": "Away +1 @ 1.88",
+        "read": "Shows how plus-handicap cushions underdog backs on the slip."
+      },
+      {
+        "kickoff": "Sun · 18:00",
+        "home": "Pacific Lions",
+        "away": "River Cats",
+        "league": "Demo Asia Cup Qual.",
+        "odds1x2": { "home": "2.90", "draw": "3.10", "away": "2.55" },
+        "handicapDemo": "PK / pick-em pricing",
+        "read": "Use this row to rehearse implied probability maths, not picks."
+      },
+      {
+        "kickoff": "Mon · 12:00",
+        "home": "Court Kings",
+        "away": "Harbour Hoops",
+        "league": "Demo Basketball League",
+        "odds1x2": { "home": "1.95", "draw": "—", "away": "1.87" },
+        "handicapDemo": "Spread -3.5 home @ 1.91",
+        "read": "Moneyline vs spread relationship shown with dummy numbers."
+      }
+    ],
+    "recentResults": [
+      { "league": "Demo Premier", "fixture": "Harbour City SC 2–2 Northgate FC", "note": "Late equaliser shifted AH refunds on some books." },
+      { "league": "Demo Champions Cup", "fixture": "Lakefront United 1–0 Metro Dragons", "note": "Under 2.5 cashed in illustrative ladder." },
+      { "league": "Demo Asia Qual.", "fixture": "River Cats 3–1 Pacific Lions", "note": "Away attack pace narrative only — not betting advice." },
+      { "league": "Demo Basketball League", "fixture": "Court Kings 108–102 Harbour Hoops", "note": "Cover depended on closing spread (-4.5 demo)." }
+    ]
+  }
+}

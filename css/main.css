@@ -1442,3 +1442,216 @@ img { max-width: 100%; height: auto; }
         grid-template-columns: 1.25fr repeat(3, minmax(0, 1fr));
     }
 }
+
+/* —— Catalogue shelves (slots / live) + sports demo panels (catalog-hub.js) —— */
+.catalog-disclaimer {
+    font-size: 0.88rem;
+    color: var(--lf-subtle);
+    margin-bottom: 1.5rem;
+    padding: 0.85rem 1rem;
+    border-left: 4px solid rgba(220, 38, 38, 0.35);
+    background: rgba(254, 226, 226, 0.35);
+    border-radius: 0 var(--lf-radius) var(--lf-radius) 0;
+}
+.catalog-disclaimer--box p {
+    margin: 0 0 0.5rem;
+}
+.catalog-disclaimer--box p:last-child {
+    margin-bottom: 0;
+}
+.catalog-section-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.2rem, 2.5vw, 1.45rem);
+    font-weight: 800;
+    margin: 2.25rem 0 1rem;
+    color: var(--lf-text);
+}
+.catalog-table-caption {
+    font-size: 0.82rem;
+    color: var(--lf-subtle);
+    margin: -0.35rem 0 0.75rem;
+    max-width: 72ch;
+}
+.catalog-error {
+    padding: 1rem 1.15rem;
+    background: rgba(254, 226, 226, 0.55);
+    border: 1px solid rgba(220, 38, 38, 0.25);
+    border-radius: var(--lf-radius);
+    color: var(--lf-red-deep);
+    font-size: 0.92rem;
+}
+.catalog-error code {
+    font-size: 0.85em;
+}
+
+.game-shelf {
+    margin-bottom: 2.25rem;
+}
+.game-shelf:last-child {
+    margin-bottom: 0;
+}
+.game-shelf__header {
+    margin-bottom: 1rem;
+}
+.game-shelf__title {
+    font-family: var(--font-display);
+    font-size: 1.28rem;
+    font-weight: 800;
+    color: var(--lf-text);
+    margin-bottom: 0.35rem;
+}
+.game-shelf__subtitle {
+    font-size: 0.92rem;
+    color: var(--lf-reading);
+    margin: 0;
+    max-width: 62ch;
+}
+.game-shelf__track {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    padding-bottom: 0.35rem;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+}
+.game-shelf__track .game-tile {
+    flex: 0 0 min(260px, 82vw);
+    scroll-snap-align: start;
+}
+
+.game-tile__media--hue-gold {
+    background: linear-gradient(145deg, #fef3c7 0%, #f59e0b 48%, #dc2626 98%);
+}
+.game-tile__media--hue-rose {
+    background: linear-gradient(145deg, #fce7f3 0%, #f472b6 45%, #be123c 100%);
+}
+.game-tile__media--hue-sand {
+    background: linear-gradient(145deg, #fef9c3 0%, #eab308 42%, #ca8a04 100%);
+}
+.game-tile__media--hue-neon {
+    background: linear-gradient(145deg, #e0e7ff 0%, #818cf8 40%, #4338ca 100%);
+}
+.game-tile__media--hue-ruby {
+    background: linear-gradient(145deg, #ffe4e6 0%, #fb7185 45%, #9f1239 100%);
+}
+.game-tile__media--hue-amber {
+    background: linear-gradient(145deg, #fffbeb 0%, #fcd34d 50%, #d97706 100%);
+}
+.game-tile__media--hue-jade {
+    background: linear-gradient(145deg, #ecfdf5 0%, #34d399 42%, #047857 100%);
+}
+.game-tile__media--hue-ocean {
+    background: linear-gradient(145deg, #e0f2fe 0%, #38bdf8 45%, #0369a1 100%);
+}
+.game-tile__media--hue-crimson {
+    background: linear-gradient(145deg, #fef2f2 0%, #f87171 48%, #991b1b 100%);
+}
+.game-tile__media--hue-azure {
+    background: linear-gradient(145deg, #dbeafe 0%, #60a5fa 45%, #1d4ed8 100%);
+}
+.game-tile__media--hue-cherry {
+    background: linear-gradient(145deg, #fdf2f8 0%, #f43f5e 42%, #881337 100%);
+}
+.game-tile__media--hue-pink {
+    background: linear-gradient(145deg, #fce7f3 0%, #ec4899 38%, #831843 100%);
+}
+.game-tile__media--hue-slate {
+    background: linear-gradient(145deg, #f1f5f9 0%, #94a3b8 45%, #334155 100%);
+}
+.game-tile__media--hue-wine {
+    background: linear-gradient(145deg, #faf5ff 0%, #c084fc 38%, #6b21a8 100%);
+}
+.game-tile__media--hue-emerald {
+    background: linear-gradient(145deg, #ecfccb 0%, #84cc16 42%, #3f6212 100%);
+}
+.game-tile__media--hue-sunset {
+    background: linear-gradient(145deg, #ffedd5 0%, #fb923c 45%, #c2410c 100%);
+}
+
+.sport-type-grid {
+    display: grid;
+    gap: 0.85rem;
+    grid-template-columns: repeat(auto-fill, minmax(148px, 1fr));
+    margin-bottom: 0.5rem;
+}
+.sport-type-card {
+    background: var(--lf-card);
+    border: 1px solid var(--lf-border);
+    border-radius: var(--lf-radius);
+    padding: 1rem 1rem 1.1rem;
+    box-shadow: var(--lf-shadow);
+    transition: border-color 0.2s;
+}
+.sport-type-card:hover {
+    border-color: rgba(220, 38, 38, 0.28);
+}
+.sport-type-card__abbr {
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    color: var(--lf-red-dark);
+}
+.sport-type-card__name {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 0.35rem 0 0.25rem;
+    color: var(--lf-text);
+}
+.sport-type-card__note {
+    font-size: 0.8rem;
+    color: var(--lf-subtle);
+    margin: 0;
+    line-height: 1.45;
+}
+
+.league-card-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(228px, 1fr));
+    margin-bottom: 0.5rem;
+}
+.league-card {
+    background: var(--lf-card);
+    border: 1px solid var(--lf-border);
+    border-radius: var(--lf-radius);
+    padding: 1.1rem;
+    box-shadow: var(--lf-shadow);
+}
+.league-card__region {
+    font-size: 0.62rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--lf-red-dark);
+}
+.league-card__name {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin: 0.4rem 0 0.35rem;
+    color: var(--lf-text);
+    line-height: 1.25;
+}
+.league-card__hook {
+    font-size: 0.86rem;
+    color: var(--lf-reading);
+    margin: 0;
+    line-height: 1.5;
+}
+
+.odds-demo-row {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    align-items: center;
+}
+.odds-pill {
+    font-size: 0.74rem;
+    font-weight: 700;
+    padding: 0.22rem 0.5rem;
+    background: rgba(220, 38, 38, 0.09);
+    border-radius: 6px;
+    color: var(--lf-red-dark);
+    white-space: nowrap;
+}

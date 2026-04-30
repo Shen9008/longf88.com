@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://longf88.com/sitemap.xml

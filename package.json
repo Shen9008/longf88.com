@@ -1,0 +1,13 @@
+{
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "serve": "npx --yes serve . -p 3456",
+    "cf:login": "wrangler login",
+    "cf:logout": "wrangler logout",
+    "cf:whoami": "wrangler whoami",
+    "cf:delete-project": "wrangler pages project delete longf88 -y",
+    "cf:create-project": "wrangler pages project create longf88 --production-branch main",
+    "cf:deploy": "wrangler pages deploy . --project-name longf88 --branch main --commit-dirty=true"
+  }
+}

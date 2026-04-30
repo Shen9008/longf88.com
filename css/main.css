@@ -1507,16 +1507,27 @@ img { max-width: 100%; height: auto; }
     max-width: 62ch;
 }
 .game-shelf__track {
-    display: flex;
+    display: grid;
     gap: 1rem;
-    overflow-x: auto;
-    padding-bottom: 0.35rem;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 .game-shelf__track .game-tile {
-    flex: 0 0 min(260px, 82vw);
-    scroll-snap-align: start;
+    min-width: 0;
+}
+@media (min-width: 560px) {
+    .game-shelf__track {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+@media (min-width: 780px) {
+    .game-shelf__track {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+@media (min-width: 1080px) {
+    .game-shelf__track {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
 }
 
 .game-tile__media--hue-gold {

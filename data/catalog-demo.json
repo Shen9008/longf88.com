@@ -10,7 +10,13 @@
           { "name": "Golden Charge Ways", "provider": "PG Soft", "tag": "Megaways", "hue": "gold", "hint": "Wild multipliers on cascading reels" },
           { "name": "Lotus Lantern Ways", "provider": "Pragmatic Play", "tag": "Megaways", "hue": "rose", "hint": "Bonus buys where regulators allow" },
           { "name": "Desert Storm Ways", "provider": "Relax Gaming", "tag": "Megaways", "hue": "sand", "hint": "Ante-bet toggles common" },
-          { "name": "Neon Samurai Ways", "provider": "Hacksaw", "tag": "Megaways", "hue": "neon", "hint": "Volatile math — split stakes" }
+          { "name": "Neon Samurai Ways", "provider": "Hacksaw", "tag": "Megaways", "hue": "neon", "hint": "Volatile math — split stakes" },
+          { "name": "Sapphire Cascade Ways", "provider": "PG Soft", "tag": "Megaways", "hue": "azure", "hint": "Tumble chains with rising multi" },
+          { "name": "Thunder Elephant Ways", "provider": "Pragmatic Play", "tag": "Megaways", "hue": "amber", "hint": "Safari grid with scatter hunts" },
+          { "name": "Jungle Rush Megaways", "provider": "Relax Gaming", "tag": "Megaways", "hue": "jade", "hint": "Dense canopy theme; watch battery" },
+          { "name": "Starfall Prism Ways", "provider": "Hacksaw", "tag": "Megaways", "hue": "wine", "hint": "Night-sky volatility spikes" },
+          { "name": "Crimson Phoenix Ways", "provider": "Fa Chai", "tag": "Megaways", "hue": "crimson", "hint": "Myth arc with grand pays cap" },
+          { "name": "Moon Gate Megaways", "provider": "Spadegaming", "tag": "Megaways", "hue": "slate", "hint": "Medium-high; mobile portrait OK" }
         ]
       },
       {
@@ -20,7 +26,14 @@
         "games": [
           { "name": "Emperor Coins", "provider": "PG Soft", "tag": "Hold & spin", "hue": "ruby", "hint": "Grand jackpot tiers" },
           { "name": "Lantern Lock", "provider": "Fa Chai", "tag": "Hold & spin", "hue": "amber", "hint": "Sticky mystery symbols" },
-          { "name": "Temple Fortune Hold", "provider": "JILI", "tag": "Hold & spin", "hue": "jade", "hint": "Turbo mode friendly on LTE" }
+          { "name": "Temple Fortune Hold", "provider": "JILI", "tag": "Hold & spin", "hue": "jade", "hint": "Turbo mode friendly on LTE" },
+          { "name": "Panda Fortune Hold", "provider": "Spadegaming", "tag": "Hold & spin", "hue": "emerald", "hint": "Collector coins stack fast" },
+          { "name": "Ruby Vault Spins", "provider": "Ka Gaming", "tag": "Hold & spin", "hue": "rose", "hint": "Mini majors in bonus grid" },
+          { "name": "Dragon Pearl Lock", "provider": "CQ9", "tag": "Hold & spin", "hue": "gold", "hint": "Extra lives on some tables" },
+          { "name": "Lotus Respin Deluxe", "provider": "JILI", "tag": "Hold & spin", "hue": "pink", "hint": "Fast respin audio cues" },
+          { "name": "Coin Cascade Deluxe", "provider": "PG Soft", "tag": "Hold & spin", "hue": "sand", "hint": "Link-style persistent pots" },
+          { "name": "Fortune Tree Hold", "provider": "Fa Chai", "tag": "Hold & spin", "hue": "sunset", "hint": "Seasonal skins rotate" },
+          { "name": "Mega Coins Fiesta", "provider": "PlayStar", "tag": "Hold & spin", "hue": "ocean", "hint": "Fiesta multipliers in finale" }
         ]
       },
       {
@@ -30,7 +43,14 @@
         "games": [
           { "name": "Reef Strike", "provider": "Spadegaming", "tag": "Fishing", "hue": "ocean", "hint": "Boss rounds spike RTP swings" },
           { "name": "Dragon Hunter X", "provider": "CQ9", "tag": "Arcade", "hue": "crimson", "hint": "Ammo coupons burn quickly" },
-          { "name": "Thunder Fishing", "provider": "PlayStar", "tag": "Fishing", "hue": "azure", "hint": "Mobile portrait optimised" }
+          { "name": "Thunder Fishing", "provider": "PlayStar", "tag": "Fishing", "hue": "azure", "hint": "Mobile portrait optimised" },
+          { "name": "Ocean King Strike", "provider": "JILI", "tag": "Fishing", "hue": "jade", "hint": "Co-op rooms vary by region" },
+          { "name": "Monster Awaken", "provider": "CQ9", "tag": "Arcade", "hue": "neon", "hint": "Boss timers tighten late map" },
+          { "name": "Fishing War Arena", "provider": "Spadegaming", "tag": "Fishing", "hue": "wine", "hint": "Jackpot fish spawn rare" },
+          { "name": "Shark Hunter Pro", "provider": "Ka Gaming", "tag": "Fishing", "hue": "slate", "hint": "Higher calibre costs more ammo" },
+          { "name": "Phoenix Fishing", "provider": "Fa Chai", "tag": "Fishing", "hue": "sunset", "hint": "Bird-phase bonus waves" },
+          { "name": "Crab Avengers", "provider": "PlayStar", "tag": "Arcade", "hue": "pink", "hint": "Short sessions; set ammo cap" },
+          { "name": "Dragon Maiden Shoot", "provider": "PG Soft", "tag": "Hybrid", "hue": "ruby", "hint": "Crossover flair; check weighting" }
         ]
       },
       {
@@ -40,7 +60,14 @@
         "games": [
           { "name": "Lucky 777 Deluxe", "provider": "Fa Chai", "tag": "Classic", "hue": "cherry", "hint": "Straightforward lines" },
           { "name": "Cherry Blaze", "provider": "Ka Gaming", "tag": "Fruit", "hue": "pink", "hint": "Medium volatility cluster" },
-          { "name": "Royal Bars", "provider": "CQ9", "tag": "Classic", "hue": "slate", "hint": "Quick sessions on commute" }
+          { "name": "Royal Bars", "provider": "CQ9", "tag": "Classic", "hue": "slate", "hint": "Quick sessions on commute" },
+          { "name": "Triple Diamond Bars", "provider": "Ka Gaming", "tag": "Classic", "hue": "gold", "hint": "BAR stacks pay steady" },
+          { "name": "Fruit Fiesta 7s", "provider": "Spadegaming", "tag": "Fruit", "hue": "rose", "hint": "Scatter bells thin variance" },
+          { "name": "Mega Cherry Deluxe", "provider": "JILI", "tag": "Fruit", "hue": "crimson", "hint": "Turbo spin friendly" },
+          { "name": "Golden Bell Classic", "provider": "CQ9", "tag": "Classic", "hue": "amber", "hint": "Single-line nostalgia mode" },
+          { "name": "Neon Seven Rush", "provider": "Hacksaw", "tag": "Classic", "hue": "neon", "hint": "Modern skin; sharp maths" },
+          { "name": "Retro Vegas Lines", "provider": "Relax Gaming", "tag": "Classic", "hue": "wine", "hint": "Linked jackpots off sometimes" },
+          { "name": "Lucky Lantern 5", "provider": "PG Soft", "tag": "Classic", "hue": "jade", "hint": "Five reels; modest features" }
         ]
       }
     ]
@@ -55,7 +82,13 @@
           { "name": "Prestige Baccarat A", "provider": "Evolution-style pit", "tag": "Baccarat", "hue": "ruby", "hint": "Wide stake rails" },
           { "name": "Speed Baccarat 12", "provider": "Pragmatic Live", "tag": "Speed bac", "hue": "wine", "hint": "Fast shoe turnover" },
           { "name": "No-Commission Bac", "provider": "Asia-facing studio", "tag": "No comm", "hue": "gold", "hint": "Different payout chart" },
-          { "name": "Dragon Bonus Table", "provider": "Ezugi lane", "tag": "Side bets", "hue": "emerald", "hint": "Side bets swing harder" }
+          { "name": "Dragon Bonus Table", "provider": "Ezugi lane", "tag": "Side bets", "hue": "emerald", "hint": "Side bets swing harder" },
+          { "name": "Salon Privé Bac", "provider": "Evolution-style", "tag": "VIP", "hue": "slate", "hint": "Invite-only feel; higher mins" },
+          { "name": "Dragon Tiger Speed", "provider": "Asia studio", "tag": "DT speed", "hue": "crimson", "hint": "Two-card rhythm; fast rounds" },
+          { "name": "Squeeze Table Emerald", "provider": "Pragmatic Live", "tag": "Squeeze", "hue": "jade", "hint": "Peek ritual adds latency" },
+          { "name": "Infinite Bac Style", "provider": "Ezugi", "tag": "Infinite", "hue": "ocean", "hint": "Always seat; watch roadmap UI" },
+          { "name": "Peek Bac Deluxe", "provider": "Evolution-style", "tag": "Peek", "hue": "azure", "hint": "Hole-card tension betting" },
+          { "name": "Fortune Six Bac", "provider": "Asia pit", "tag": "Side 6", "hue": "sunset", "hint": "Bonus six pays sporadic" }
         ]
       },
       {
@@ -65,7 +98,14 @@
         "games": [
           { "name": "Immersive European", "provider": "Evolution-style", "tag": "European", "hue": "wine", "hint": "Slow-motion replays" },
           { "name": "Auto Roulette Classic", "provider": "Pragmatic Live", "tag": "Auto", "hue": "slate", "hint": "Great for low latency" },
-          { "name": "Lightning-style Wheel", "provider": "Presenter show", "tag": "RNG boosts", "hue": "neon", "hint": "Multiplier segments" }
+          { "name": "Lightning-style Wheel", "provider": "Presenter show", "tag": "RNG boosts", "hue": "neon", "hint": "Multiplier segments" },
+          { "name": "French Gold Wheel", "provider": "Evolution-style", "tag": "French", "hue": "gold", "hint": "La partage where offered" },
+          { "name": "Speed Roulette X", "provider": "Pragmatic Live", "tag": "Speed", "hue": "ruby", "hint": "18s rounds typical" },
+          { "name": "Double Ball Demo", "provider": "Presenter", "tag": "Dual ball", "hue": "pink", "hint": "Two outcomes; check rules" },
+          { "name": "VIP Roulette Studio", "provider": "Ezugi", "tag": "VIP", "hue": "amber", "hint": "Higher table caps evenings" },
+          { "name": "Instant Roulette Auto", "provider": "Evolution-style", "tag": "Instant", "hue": "ocean", "hint": "Synced wheels pool liquidity" },
+          { "name": "Blaze Roulette", "provider": "Asia", "tag": "Blaze", "hue": "crimson", "hint": "Fire-theme bonus pockets" },
+          { "name": "American Strip Wheel", "provider": "Hybrid", "tag": "American", "hue": "azure", "hint": "Double zero; edge math differs" }
         ]
       },
       {
@@ -75,7 +115,14 @@
         "games": [
           { "name": "Blackjack Azure A", "provider": "Pragmatic Live", "tag": "7-seat", "hue": "ocean", "hint": "Bet behind enabled" },
           { "name": "VIP Blackjack North", "provider": "Evolution-style", "tag": "High limits", "hue": "gold", "hint": "Higher mins evenings" },
-          { "name": "Speed Blackjack Q", "provider": "Ezugi lane", "tag": "Speed", "hue": "ruby", "hint": "Decision timers tight" }
+          { "name": "Speed Blackjack Q", "provider": "Ezugi lane", "tag": "Speed", "hue": "ruby", "hint": "Decision timers tight" },
+          { "name": "Free Bet Blackjack Y", "provider": "Evolution-style", "tag": "Free bet", "hue": "emerald", "hint": "Splits/doubles promo rules" },
+          { "name": "Power Blackjack Z", "provider": "Pragmatic Live", "tag": "Power", "hue": "wine", "hint": "Doubles & triples variants" },
+          { "name": "Infinite Blackjack Style", "provider": "Ezugi", "tag": "Infinite", "hue": "slate", "hint": "Community cards shared" },
+          { "name": "Blackjack Party Table", "provider": "Evolution-style", "tag": "Party", "hue": "sunset", "hint": "Chatty hosts; softer pacing" },
+          { "name": "Classic Seven Seat B", "provider": "Asia", "tag": "7-seat", "hue": "jade", "hint": "Squeeze cam optional" },
+          { "name": "One Blackjack Hub", "provider": "Pragmatic Live", "tag": "One-to-many", "hue": "neon", "hint": "Side bets broadcast heavy" },
+          { "name": "Downtown Blackjack", "provider": "Ezugi", "tag": "Classic", "hue": "amber", "hint": "Strip vibe UI skins" }
         ]
       },
       {
@@ -85,7 +132,14 @@
         "games": [
           { "name": "Wheel Fortune Live", "provider": "Presenter format", "tag": "Wheel", "hue": "sunset", "hint": "Bonus heavy swings" },
           { "name": "Dice Tower Party", "provider": "Asia studio", "tag": "Dice", "hue": "amber", "hint": "Community multipliers" },
-          { "name": "Boom City Style", "provider": "Hybrid RNG", "tag": "Crash vibe", "hue": "neon", "hint": "Treat like volatile slots" }
+          { "name": "Boom City Style", "provider": "Hybrid RNG", "tag": "Crash vibe", "hue": "neon", "hint": "Treat like volatile slots" },
+          { "name": "Crazy Coin Flip Style", "provider": "Presenter", "tag": "Flip", "hue": "gold", "hint": "Two-phase bonus builds" },
+          { "name": "Deal or Bonus Wheel", "provider": "Presenter", "tag": "Deal", "hue": "rose", "hint": "Briefcases meta varies" },
+          { "name": "Mega Ball Style Draw", "provider": "Hybrid", "tag": "Ball draw", "hue": "azure", "hint": "Bingo-meets-lotto pacing" },
+          { "name": "Sic Bo Deluxe Live", "provider": "Asia", "tag": "Sic bo", "hue": "ruby", "hint": "Triple bets swing hard" },
+          { "name": "Fan Tan Classic", "provider": "Studio", "tag": "Fan tan", "hue": "jade", "hint": "Bead rhythm APAC peak" },
+          { "name": "Andar Bahar Live", "provider": "India lane", "tag": "Andar", "hue": "wine", "hint": "Side jodi bets optional" },
+          { "name": "Teen Patti Royale", "provider": "Asia", "tag": "Teen patti", "hue": "crimson", "hint": "Trail bonuses promo-led" }
         ]
       }
     ]

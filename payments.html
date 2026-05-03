@@ -69,14 +69,213 @@
                 <p class="page-hero__summary">Marketing often bundles around <strong>17</strong> payment flavours: cards, popular e-wallets, crypto, bank transfers, vouchers, and QR-style instant methods common across Asia. What lands in your cashier still hinges on verification, currency, and where you're playing from.</p>
             </div>
         </header>
+        <section class="section section--alt" aria-labelledby="payments-methods-heading">
+            <div class="container">
+                <header class="section__header">
+                    <p class="section__eyebrow">Cashier reference</p>
+                    <h2 id="payments-methods-heading" class="section__title">Payment methods, limits &amp; timing</h2>
+                    <p class="section__desc">Typical corridors operators publish for Asian-facing brands &mdash; currency, verification tier, and country gates change what you actually see after login.</p>
+                </header>
+                <p class="catalog-table-caption" style="margin-top: 0;">Limits shown in <strong>USD equivalent</strong> for comparison; switch to your wallet currency in the real cashier. &ldquo;Instant&rdquo; means credited once the provider confirms; blockchain waits on confirmations.</p>
+                <div class="data-table-wrap">
+                    <table class="data-table data-table--compact data-table--payments">
+                        <thead>
+                            <tr>
+                                <th scope="col">Method</th>
+                                <th scope="col">Countries / regions</th>
+                                <th scope="col">Min. deposit</th>
+                                <th scope="col">Max. deposit</th>
+                                <th scope="col">Min. withdrawal</th>
+                                <th scope="col">Max. withdrawal</th>
+                                <th scope="col">Deposit speed</th>
+                                <th scope="col">Withdrawal speed</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Visa</strong> (credit / debit)</td>
+                                <td>Broad global where card gambling permitted; issuer blocks common in AU, parts of EU</td>
+                                <td>$10</td>
+                                <td>$5,000 / txn</td>
+                                <td>$20</td>
+                                <td>$5,000 / txn</td>
+                                <td>Instant &ndash; 5 min</td>
+                                <td>1&ndash;24 h after approval</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Mastercard</strong> (credit / debit)</td>
+                                <td>Similar footprint to Visa; fewer payout rails (often deposit-only)</td>
+                                <td>$10</td>
+                                <td>$5,000 / txn</td>
+                                <td>&mdash;</td>
+                                <td>&mdash;</td>
+                                <td>Instant &ndash; 5 min</td>
+                                <td>Use alternate payout method</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Skrill</strong></td>
+                                <td>Wide EU / Asia / LATAM; US restricted</td>
+                                <td>$10</td>
+                                <td>$10,000 / txn</td>
+                                <td>$20</td>
+                                <td>$10,000 / txn</td>
+                                <td>Instant</td>
+                                <td>Up to 24 h</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Neteller</strong></td>
+                                <td>Similar to Skrill; wallet country rules apply</td>
+                                <td>$10</td>
+                                <td>$10,000 / txn</td>
+                                <td>$20</td>
+                                <td>$10,000 / txn</td>
+                                <td>Instant</td>
+                                <td>Up to 24 h</td>
+                            </tr>
+                            <tr>
+                                <td><strong>ecoPayz</strong></td>
+                                <td>EU + many Asia corridors</td>
+                                <td>$10</td>
+                                <td>$8,000 / txn</td>
+                                <td>$20</td>
+                                <td>$8,000 / txn</td>
+                                <td>Instant</td>
+                                <td>Up to 24 h</td>
+                            </tr>
+                            <tr>
+                                <td><strong>MiFinity</strong></td>
+                                <td>EU / UK / selective Asia</td>
+                                <td>$15</td>
+                                <td>$7,500 / txn</td>
+                                <td>$25</td>
+                                <td>$7,500 / txn</td>
+                                <td>Instant</td>
+                                <td>Up to 24 h</td>
+                            </tr>
+                            <tr>
+                                <td><strong>AstroPay</strong> One Touch</td>
+                                <td>LatAm + parts of Asia</td>
+                                <td>$5</td>
+                                <td>$3,000 / txn</td>
+                                <td>$10</td>
+                                <td>$3,000 / txn</td>
+                                <td>Instant</td>
+                                <td>Up to 24 h</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Paysafecard</strong> / voucher</td>
+                                <td>EU dominant; prepaid caps lower</td>
+                                <td>$5</td>
+                                <td>$1,000 / txn</td>
+                                <td>&mdash;</td>
+                                <td>&mdash;</td>
+                                <td>Instant</td>
+                                <td>Not supported (deposit-only)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Apple Pay</strong> / <strong>Google Pay</strong></td>
+                                <td>Where enabled behind card processor</td>
+                                <td>$10</td>
+                                <td>$3,000 / txn</td>
+                                <td>&mdash;</td>
+                                <td>&mdash;</td>
+                                <td>Instant</td>
+                                <td>Routes to card / bank payout</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Local bank transfer</strong></td>
+                                <td>Country-specific (MY, TH, VN, ID, PH, etc.)</td>
+                                <td>$15</td>
+                                <td>$20,000 / txn</td>
+                                <td>$30</td>
+                                <td>$20,000 / txn</td>
+                                <td>15 min &ndash; 2 h</td>
+                                <td>Same day &ndash; 48 h</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Wire transfer</strong> (SWIFT)</td>
+                                <td>International; higher friction</td>
+                                <td>$100</td>
+                                <td>$50,000 / txn</td>
+                                <td>$200</td>
+                                <td>$50,000 / txn</td>
+                                <td>Same day &ndash; 3 days</td>
+                                <td>2&ndash;7 banking days</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Instant banking</strong> (FPX-style)</td>
+                                <td>Malaysia, Thailand corridors common</td>
+                                <td>$10</td>
+                                <td>$10,000 / txn</td>
+                                <td>$25</td>
+                                <td>$10,000 / txn</td>
+                                <td>5&ndash;30 min</td>
+                                <td>Same day &ndash; 48 h</td>
+                            </tr>
+                            <tr>
+                                <td><strong>QR instant pay</strong></td>
+                                <td>PromptPay, DuitNow, VietQR, GCash-class rails</td>
+                                <td>$5</td>
+                                <td>$5,000 / txn</td>
+                                <td>$15</td>
+                                <td>$5,000 / txn</td>
+                                <td>1&ndash;15 min</td>
+                                <td>Same day &ndash; 36 h</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Regional e-wallets</strong></td>
+                                <td>TrueMoney, LINE Pay, GrabPay where contracted</td>
+                                <td>$5</td>
+                                <td>$3,000 / txn</td>
+                                <td>$15</td>
+                                <td>$3,000 / txn</td>
+                                <td>Instant &ndash; 15 min</td>
+                                <td>Up to 48 h</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Bitcoin</strong> (BTC)</td>
+                                <td>Global (network fees apply)</td>
+                                <td>$20 equiv.</td>
+                                <td>No hard cap*</td>
+                                <td>$50 equiv.</td>
+                                <td>Daily limits tiered*</td>
+                                <td>10&ndash;60 min (confirms)</td>
+                                <td>1&ndash;24 h after broadcast</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Ethereum</strong> (ETH)</td>
+                                <td>Global</td>
+                                <td>$20 equiv.</td>
+                                <td>No hard cap*</td>
+                                <td>$50 equiv.</td>
+                                <td>Daily limits tiered*</td>
+                                <td>5&ndash;30 min</td>
+                                <td>1&ndash;24 h</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Tether</strong> (USDT TRC20 / ERC20)</td>
+                                <td>Global; pick matching network</td>
+                                <td>$10 equiv.</td>
+                                <td>No hard cap*</td>
+                                <td>$20 equiv.</td>
+                                <td>Daily limits tiered*</td>
+                                <td>1&ndash;15 min</td>
+                                <td>1&ndash;12 h typical</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="catalog-table-caption" style="margin-bottom: 2rem;">* Crypto ceilings usually follow account tier and AML policies, not a single public max. First-time withdrawals often queue for manual review.</p>
+            </div>
+        </section>
         <section class="section">
             <div class="container prose" style="max-width:72ch">
                 <h2>Why cash-out windows bounce around</h2>
                 <p>Banners shouting <strong>2&ndash;24h</strong> rarely mention manual reviews, holidays, busy queues, or your first chunky withdrawal. Upload ID early so you're not stranded when funds suddenly matter.</p>
                 <h2>Crypto versus banks</h2>
                 <p>Crypto adds miner fees and easy mistakes with addresses or memo tags. Banks can feel slower but disputes ride familiar rails&mdash;pick what you trust, not whichever keyword sounds futuristic.</p>
-                <h2>Questions about this guide?</h2>
-                <p>Actual money movement stays with LongFu88 support; stash ticket numbers. Typos or factual slips on longf88.com go through <a href="help.html">help</a>.</p>
+                <h2>Questions about banking?</h2>
+                <p>Deposits and withdrawals go through LongFu88 support; keep ticket numbers. For mistakes on these guide pages, use <a href="help.html">help</a>.</p>
             </div>
         </section>
     </main>

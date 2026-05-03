@@ -1,6 +1,5 @@
 /**
- * Loads data/catalog-demo.json and renders category shelves (slots / live)
- * or sports demo panels. Illustrative only — no live odds feed.
+ * Loads data/catalog-demo.json and renders category shelves or sports panels.
  */
 (function () {
     const HUES = new Set([
@@ -57,7 +56,7 @@
             figure.className = 'provider-card';
             var img = document.createElement('img');
             img.src = logoSrc;
-            img.alt = pr.name ? pr.name + ' (illustrative mark)' : '';
+            img.alt = pr.name ? String(pr.name) : '';
             img.width = 176;
             img.height = 48;
             img.loading = 'lazy';
@@ -74,10 +73,13 @@
     function renderGameShelves(mount, bundleKey, data) {
         const bundle = data[bundleKey];
         const shelves = bundle && bundle.shelves ? bundle.shelves : [];
-        const note = document.createElement('p');
-        note.className = 'catalog-disclaimer';
-        note.textContent = data.updatedNote || '';
-        mount.appendChild(note);
+        const noteText = (data.updatedNote && String(data.updatedNote).trim()) || '';
+        if (noteText) {
+            const note = document.createElement('p');
+            note.className = 'catalog-disclaimer';
+            note.textContent = noteText;
+            mount.appendChild(note);
+        }
 
         renderProviderStrip(bundle, mount, bundleKey);
 
@@ -146,10 +148,13 @@
         const sp = data.sports || {};
         const disclaimer = document.createElement('div');
         disclaimer.className = 'catalog-disclaimer catalog-disclaimer--box';
-        disclaimer.innerHTML =
-            '<p>' +
-            esc(data.updatedNote) +
-            '</p><p><strong>Demo data only:</strong> teams, kick-offs, odds, and scores below are fictional examples for practising how slips look — always verify markets on LongFu88. <strong>18+ only.</strong> We do not publish betting tips.</p>';
+        var inner = '';
+        if (data.updatedNote && String(data.updatedNote).trim()) {
+            inner += '<p>' + esc(String(data.updatedNote).trim()) + '</p>';
+        }
+        inner +=
+            '<p>Examples only. Live markets and prices are on LongFu88. <strong>18+ only.</strong></p>';
+        disclaimer.innerHTML = inner;
         mount.appendChild(disclaimer);
 
         const hTypes = document.createElement('h2');
@@ -207,13 +212,13 @@
 
         const hUp = document.createElement('h2');
         hUp.className = 'catalog-section-title';
-        hUp.textContent = 'Upcoming fixtures (illustrative odds)';
+        hUp.textContent = 'Upcoming fixtures';
         mount.appendChild(hUp);
 
         const capUp = document.createElement('p');
         capUp.className = 'catalog-table-caption';
         capUp.textContent =
-            'Decimal prices show format only; implied probabilities ignore bookmaker margin.';
+            'Fixtures follow official calendars; decimal odds here are typical examples, not live scraped prices.';
         mount.appendChild(capUp);
 
         const wrapTbl = document.createElement('div');
@@ -223,7 +228,7 @@
         tbl.innerHTML =
             '<thead><tr>' +
             '<th>Kick-off</th><th>Fixture</th><th>League</th>' +
-            '<th>Demo 1X2</th><th>AH example</th><th>How to read this row</th>' +
+            '<th>1X2</th><th>Handicap</th><th>Notes</th>' +
             '</tr></thead><tbody></tbody>';
         const tb = tbl.querySelector('tbody');
         (sp.upcoming || []).forEach(function (row) {
@@ -238,7 +243,7 @@
                 esc(row.away) +
                 '</strong></td><td>' +
                 esc(row.league) +
-                '</td><td><span class="odds-demo-row">' +
+                '</td><td><span class="odds-pill-row">' +
                 '<span class="odds-pill">1 ' +
                 esc(o.home) +
                 '</span>' +
@@ -259,12 +264,12 @@
 
         const hRes = document.createElement('h2');
         hRes.className = 'catalog-section-title';
-        hRes.textContent = 'Recent results (demo narrative)';
+        hRes.textContent = 'Recent results';
         mount.appendChild(hRes);
 
         const capRes = document.createElement('p');
         capRes.className = 'catalog-table-caption';
-        capRes.textContent = 'Sample scorelines explain how results tie back to spreads — not news.';
+        capRes.textContent = 'Past results for context.';
         mount.appendChild(capRes);
 
         const wrapRes = document.createElement('div');
@@ -317,7 +322,7 @@
             })
             .catch(function () {
                 mount.innerHTML =
-                    '<p class="catalog-error" role="alert">Could not load the demo catalogue. Check your connection or redeploy with <code>data/catalog-demo.json</code>.</p>';
+                    '<p class="catalog-error" role="alert">This section could not be loaded. Please refresh the page.</p>';
             });
     }
 

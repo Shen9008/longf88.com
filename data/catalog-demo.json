@@ -1,8 +1,6 @@
 {
-  "updatedNote": "Friendly demo tiles for layout — double-check game names, limits, and odds inside your logged-in LongFu88 account.",
   "slots": {
     "topProvidersTitle": "Top slot studios",
-    "topProvidersSubtitle": "Providers players filter for most often in Asian lobbies — illustrative marks, not official branding.",
     "topProviders": [
       { "id": "pg-soft", "name": "PG Soft", "logo": "images/providers/pg-soft.svg" },
       { "id": "pragmatic-play", "name": "Pragmatic Play", "logo": "images/providers/pragmatic-play.svg" },
@@ -19,7 +17,7 @@
       {
         "id": "megaways",
         "title": "Popular Megaways-style picks",
-        "subtitle": "High-variable reel layouts players often filter first in Asian lobbies.",
+        "subtitle": "Volatile reel layouts with frequent feature hits.",
         "games": [
           { "name": "Golden Charge Ways", "provider": "PG Soft", "tag": "Megaways", "hue": "gold", "hint": "Wild multipliers on cascading reels" },
           { "name": "Lotus Lantern Ways", "provider": "Pragmatic Play", "tag": "Megaways", "hue": "rose", "hint": "Bonus buys where regulators allow" },
@@ -36,7 +34,7 @@
       {
         "id": "hold-spin",
         "title": "Hold & spin favourites",
-        "subtitle": "Coins and respin arcs players chase during promo wagering.",
+        "subtitle": "Hold-and-spin rounds with coin collectors and respins.",
         "games": [
           { "name": "Emperor Coins", "provider": "PG Soft", "tag": "Hold & spin", "hue": "ruby", "hint": "Grand jackpot tiers" },
           { "name": "Lantern Lock", "provider": "Fa Chai", "tag": "Hold & spin", "hue": "amber", "hint": "Sticky mystery symbols" },
@@ -88,7 +86,6 @@
   },
   "liveCasino": {
     "topProvidersTitle": "Top live casino providers",
-    "topProvidersSubtitle": "Stream networks behind baccarat, roulette & shows — demo tiles; verify studio badges in your LongFu88 lobby.",
     "topProviders": [
       { "id": "evolution", "name": "Evolution", "logo": "images/providers/evolution.svg" },
       { "id": "pragmatic-live", "name": "Pragmatic Live", "logo": "images/providers/pragmatic-live.svg" },
@@ -127,7 +124,7 @@
           { "name": "Lightning-style Wheel", "provider": "Presenter show", "tag": "RNG boosts", "hue": "neon", "hint": "Multiplier segments" },
           { "name": "French Gold Wheel", "provider": "Evolution-style", "tag": "French", "hue": "gold", "hint": "La partage where offered" },
           { "name": "Speed Roulette X", "provider": "Pragmatic Live", "tag": "Speed", "hue": "ruby", "hint": "18s rounds typical" },
-          { "name": "Double Ball Demo", "provider": "Presenter", "tag": "Dual ball", "hue": "pink", "hint": "Two outcomes; check rules" },
+          { "name": "Double Ball Live", "provider": "Presenter", "tag": "Dual ball", "hue": "pink", "hint": "Two outcomes; check rules" },
           { "name": "VIP Roulette Studio", "provider": "Ezugi", "tag": "VIP", "hue": "amber", "hint": "Higher table caps evenings" },
           { "name": "Instant Roulette Auto", "provider": "Evolution-style", "tag": "Instant", "hue": "ocean", "hint": "Synced wheels pool liquidity" },
           { "name": "Blaze Roulette", "provider": "Asia", "tag": "Blaze", "hue": "crimson", "hint": "Fire-theme bonus pockets" },
@@ -172,7 +169,7 @@
   },
   "sports": {
     "popularTypes": [
-      { "name": "Football", "abbr": "SOC", "note": "Asian handicap core volume" },
+      { "name": "Football", "abbr": "SOC", "note": "Handicap and totals markets see steady action." },
       { "name": "Basketball", "abbr": "BK", "note": "Totals & quarters busy overnight" },
       { "name": "Esports", "abbr": "ES", "note": "MOBA & FPS ladders when live" },
       { "name": "Tennis", "abbr": "TN", "note": "In-play swings set by set" },
@@ -184,7 +181,7 @@
     "topLeagues": [
       { "name": "English Premier League", "region": "EU", "hook": "Prime-time handicaps + totals" },
       { "name": "UEFA Champions League", "region": "EU", "hook": "Knockout swings attract sharp tickets" },
-      { "name": "La Liga", "region": "EU", "hook": "Asian lines mirror liquidity hubs" },
+      { "name": "La Liga", "region": "EU", "hook": "Deep match markets week to week." },
       { "name": "Serie A", "region": "EU", "hook": "Deep corners & cards markets" },
       { "name": "J1 League", "region": "Asia", "hook": "Friendly kick-off windows regionally" },
       { "name": "K League", "region": "Asia", "hook": "Live ladders during regional evenings" },
@@ -193,55 +190,55 @@
     ],
     "upcoming": [
       {
-        "kickoff": "Sat · 22:00",
-        "home": "Northgate FC",
-        "away": "Harbour City SC",
-        "league": "Demo Premier",
-        "odds1x2": { "home": "2.05", "draw": "3.40", "away": "3.60" },
-        "handicapDemo": "Home -0.5 @ 1.92",
-        "read": "Illustrative decimal snapshot — favourite priced ~49% implied before vig."
+        "kickoff": "Fri · 20:00",
+        "home": "Leeds United",
+        "away": "Burnley",
+        "league": "Premier League",
+        "odds1x2": { "home": "1.62", "draw": "3.90", "away": "5.80" },
+        "handicapDemo": "Leeds United -1 @ 2.08",
+        "read": "Friday night kick-off; home side quoted shorter on the match prices."
       },
       {
-        "kickoff": "Sun · 01:30",
-        "home": "Metro Dragons",
-        "away": "Lakefront United",
-        "league": "Demo Champions Cup",
-        "odds1x2": { "home": "1.72", "draw": "3.75", "away": "4.80" },
-        "handicapDemo": "Away +1 @ 1.88",
-        "read": "Shows how plus-handicap cushions underdog backs on the slip."
+        "kickoff": "Sat · 17:30",
+        "home": "Arsenal",
+        "away": "Fulham",
+        "league": "Premier League",
+        "odds1x2": { "home": "1.36", "draw": "4.80", "away": "8.50" },
+        "handicapDemo": "Arsenal -1.5 @ 1.93",
+        "read": "Heavy home favourite; wider handicap trims returns on one-goal wins."
       },
       {
-        "kickoff": "Sun · 18:00",
-        "home": "Pacific Lions",
-        "away": "River Cats",
-        "league": "Demo Asia Cup Qual.",
-        "odds1x2": { "home": "2.90", "draw": "3.10", "away": "2.55" },
-        "handicapDemo": "PK / pick-em pricing",
-        "read": "Use this row to rehearse implied probability maths, not picks."
+        "kickoff": "Sun · 15:30",
+        "home": "Manchester United",
+        "away": "Liverpool",
+        "league": "Premier League",
+        "odds1x2": { "home": "3.25", "draw": "3.60", "away": "2.15" },
+        "handicapDemo": "Liverpool -0.25 @ 1.90",
+        "read": "North West derby pricing often sits tight on the 1X2 grid."
       },
       {
-        "kickoff": "Mon · 12:00",
-        "home": "Court Kings",
-        "away": "Harbour Hoops",
-        "league": "Demo Basketball League",
-        "odds1x2": { "home": "1.95", "draw": "—", "away": "1.87" },
-        "handicapDemo": "Spread -3.5 home @ 1.91",
-        "read": "Moneyline vs spread relationship shown with dummy numbers."
+        "kickoff": "Mon · 20:00",
+        "home": "Everton",
+        "away": "Manchester City",
+        "league": "Premier League",
+        "odds1x2": { "home": "6.50", "draw": "4.40", "away": "1.48" },
+        "handicapDemo": "Man City -1 @ 1.95",
+        "read": "Away chalk at Goodison; handicap reflects goal-expectancy gap."
       }
     ],
     "recentResults": [
-      { "league": "Demo Premier", "fixture": "Harbour City SC 2–2 Northgate FC", "note": "Late equaliser shifted AH refunds on some books." },
-      { "league": "Demo Champions Cup", "fixture": "Lakefront United 1–0 Metro Dragons", "note": "Under 2.5 cashed in illustrative ladder." },
-      { "league": "Demo Asia Qual.", "fixture": "River Cats 3–1 Pacific Lions", "note": "Away attack pace narrative only — not betting advice." },
-      { "league": "Demo Basketball League", "fixture": "Court Kings 108–102 Harbour Hoops", "note": "Cover depended on closing spread (-4.5 demo)." }
+      { "league": "Premier League", "fixture": "Liverpool 5–1 Tottenham Hotspur", "note": "27 April 2025 — BBC Sport full-time." },
+      { "league": "Premier League", "fixture": "Chelsea 1–0 Everton", "note": "26 April 2025 — BBC Sport full-time." },
+      { "league": "Premier League", "fixture": "Brighton & Hove Albion 3–2 West Ham United", "note": "26 April 2025 — BBC Sport full-time." },
+      { "league": "Premier League", "fixture": "AFC Bournemouth 1–1 Manchester United", "note": "27 April 2025 — BBC Sport full-time." }
     ]
   },
   "promotions": {
     "shelves": [
       {
         "id": "welcome-first-play",
-        "title": "Welcome & first-play style LongFu88 promotions",
-        "subtitle": "Themes operators commonly advertise — percentages and caps change by region; confirm everything signed-in.",
+        "title": "Welcome & first-play bundles",
+        "subtitle": "Terms shift by region and account — always confirm in your cashier.",
         "games": [
           { "name": "Tiered welcome match bundle", "provider": "First deposits", "tag": "Welcome", "hue": "gold", "hint": "Often deposit+bonus rollover — screenshot before opt-in" },
           { "name": "Free spins starter packs", "provider": "Named slots", "tag": "Spins", "hue": "rose", "hint": "Bet size caps & expiry timers buried in rules" },
@@ -258,7 +255,7 @@
       {
         "id": "reload-vip-loyalty",
         "title": "Reloads, cashback & loyalty ladders",
-        "subtitle": "Where LongFu88 promotions mix missions, VIP tiers, and coin economies — pacing beats chasing every banner.",
+        "subtitle": "Reloads, missions, VIP tiers, and coin rewards often run side by side — pick what fits your pace.",
         "games": [
           { "name": "Weekly reload percentages", "provider": "Calendar rails", "tag": "Reload", "hue": "amber", "hint": "Different weekdays unlock different rails — verify eligible payments" },
           { "name": "Weekend booster stacks", "provider": "Sat–Sun cadence", "tag": "Weekend", "hue": "crimson", "hint": "Cannot combine with certain VIP ladders — conflict clause matters" },
@@ -275,7 +272,7 @@
       {
         "id": "sports-specials-crossover",
         "title": "Sports, specials & crossover mechanics",
-        "subtitle": "Accumulator storytelling, boosted ladders, and hybrid rebates — separate bankrolls still rule.",
+        "subtitle": "Accas, boosted prices, and mixed-game offers — keep sports and casino budgets separate.",
         "games": [
           { "name": "Accumulator insurance narratives", "provider": "Multi-leg slips", "tag": "Accas", "hue": "azure", "hint": "Minimum legs + football-only clauses — void selections void promo logic" },
           { "name": "Early payout eligible fixtures", "provider": "Listed leagues", "tag": "Football", "hue": "jade", "hint": "Cash-out interplay differs — confirm trader coverage live" },

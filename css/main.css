@@ -1391,6 +1391,11 @@ img { max-width: 100%; height: auto; }
     padding: 0.6rem 0.75rem;
 }
 
+/* Wide payment matrix: horizontal scroll on narrow viewports */
+.data-table--payments {
+    min-width: 920px;
+}
+
 .explore-section--promo {
     background: linear-gradient(180deg, #fff5f5 0%, #ffffff 100%);
     border-top: 1px solid var(--lf-border);
@@ -1712,7 +1717,7 @@ img { max-width: 100%; height: auto; }
     line-height: 1.5;
 }
 
-.odds-demo-row {
+.odds-pill-row {
     display: inline-flex;
     flex-wrap: wrap;
     gap: 0.35rem;

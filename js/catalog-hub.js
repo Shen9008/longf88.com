@@ -218,7 +218,7 @@
         const capUp = document.createElement('p');
         capUp.className = 'catalog-table-caption';
         capUp.textContent =
-            'Fixtures follow official calendars; decimal odds here are typical examples, not live scraped prices.';
+            'Sample fixtures illustrate handicaps & decimals — jump into LongFu88 for live Asian lines.';
         mount.appendChild(capUp);
 
         const wrapTbl = document.createElement('div');

@@ -953,6 +953,19 @@ img { max-width: 100%; height: auto; }
     }
 }
 .footer__lead { color: var(--lf-reading); font-size: 0.92rem; margin-top: 0.75rem; max-width: 36ch; }
+.footer__meta {
+    font-size: 0.82rem;
+    color: var(--lf-subtle);
+    margin-top: 0.85rem;
+    max-width: 46ch;
+    line-height: 1.5;
+}
+.footer__meta a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+.footer__meta a:hover { color: var(--lf-red-dark); }
 .footer__heading {
     display: flex;
     align-items: center;
@@ -1370,6 +1383,39 @@ img { max-width: 100%; height: auto; }
     font-size: 0.92rem;
     color: var(--lf-reading);
     margin: 0;
+}
+
+/* Editorial transparency (EEAT) */
+.eeat-callout {
+    margin-top: 1.25rem;
+    padding: 1rem 1.15rem;
+    background: var(--lf-bg-elevated);
+    border: 1px solid var(--lf-border);
+    border-radius: var(--lf-radius);
+    border-left: 4px solid var(--lf-red-dark);
+}
+.eeat-callout__label {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--lf-red-dark);
+    margin-bottom: 0.35rem;
+}
+.eeat-callout__text {
+    font-size: 0.88rem;
+    color: var(--lf-reading);
+    margin: 0;
+    line-height: 1.55;
+}
+.eeat-callout__text + .eeat-callout__text {
+    margin-top: 0.65rem;
+}
+.eeat-callout__meta {
+    margin-top: 0.65rem;
+    font-size: 0.8rem;
+    color: var(--lf-subtle);
 }
 
 .explore-footnote {

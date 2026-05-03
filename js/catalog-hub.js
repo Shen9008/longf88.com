@@ -295,7 +295,8 @@
         var map = {
             slots: 'catalog-mount-slots',
             'live-casino': 'catalog-mount-live',
-            'sports-betting': 'catalog-mount-sports'
+            'sports-betting': 'catalog-mount-sports',
+            promotions: 'catalog-mount-promotions'
         };
         var id = map[page];
         if (!id) return;
@@ -311,6 +312,7 @@
                 mount.innerHTML = '';
                 if (page === 'slots') renderGameShelves(mount, 'slots', data);
                 else if (page === 'live-casino') renderGameShelves(mount, 'liveCasino', data);
+                else if (page === 'promotions') renderGameShelves(mount, 'promotions', data);
                 else if (page === 'sports-betting') renderSports(mount, data);
             })
             .catch(function () {

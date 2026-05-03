@@ -235,5 +235,60 @@
       { "league": "Demo Asia Qual.", "fixture": "River Cats 3–1 Pacific Lions", "note": "Away attack pace narrative only — not betting advice." },
       { "league": "Demo Basketball League", "fixture": "Court Kings 108–102 Harbour Hoops", "note": "Cover depended on closing spread (-4.5 demo)." }
     ]
+  },
+  "promotions": {
+    "shelves": [
+      {
+        "id": "welcome-first-play",
+        "title": "Welcome & first-play style LongFu88 promotions",
+        "subtitle": "Themes operators commonly advertise — percentages and caps change by region; confirm everything signed-in.",
+        "games": [
+          { "name": "Tiered welcome match bundle", "provider": "First deposits", "tag": "Welcome", "hue": "gold", "hint": "Often deposit+bonus rollover — screenshot before opt-in" },
+          { "name": "Free spins starter packs", "provider": "Named slots", "tag": "Spins", "hue": "rose", "hint": "Bet size caps & expiry timers buried in rules" },
+          { "name": "Bonus Crab–style picker perk", "provider": "Add-on promo", "tag": "Extra", "hue": "ocean", "hint": "Mini-game prizes vary; eligibility windows tight" },
+          { "name": "Crypto-first deposit lane", "provider": "USDT / BTC / ETH", "tag": "Crypto", "hue": "neon", "hint": "Correct chain/network mandatory — wrong sends are irreversible" },
+          { "name": "Live casino newcomer rebate", "provider": "Tables & shows", "tag": "Live", "hue": "ruby", "hint": "Side bets sometimes excluded from rebate maths" },
+          { "name": "Sportsbook signup specials", "provider": "Opening bets", "tag": "Sports", "hue": "jade", "hint": "Max stake & odds floors common — read void clauses" },
+          { "name": "Refer-a-friend structured rewards", "provider": "Social invites", "tag": "Referral", "hue": "azure", "hint": "Friend must verify & wager — clawbacks if churn detected" },
+          { "name": "Push / inbox exclusives", "provider": "CRM channels", "tag": "Targeted", "hue": "wine", "hint": "Geo-gated — compare against main promo hub so you do not stack blindly" },
+          { "name": "Seasonal festival overlays", "provider": "Limited dates", "tag": "Seasonal", "hue": "sunset", "hint": "Separate PDF T&Cs — rollover clocks ignore holidays mentally" },
+          { "name": "Micro rollover starter credits", "provider": "Low friction", "tag": "Starter", "hue": "slate", "hint": "Good for testing cashier speed — tiny upside vs headline banners" }
+        ]
+      },
+      {
+        "id": "reload-vip-loyalty",
+        "title": "Reloads, cashback & loyalty ladders",
+        "subtitle": "Where LongFu88 promotions mix missions, VIP tiers, and coin economies — pacing beats chasing every banner.",
+        "games": [
+          { "name": "Weekly reload percentages", "provider": "Calendar rails", "tag": "Reload", "hue": "amber", "hint": "Different weekdays unlock different rails — verify eligible payments" },
+          { "name": "Weekend booster stacks", "provider": "Sat–Sun cadence", "tag": "Weekend", "hue": "crimson", "hint": "Cannot combine with certain VIP ladders — conflict clause matters" },
+          { "name": "VIP tiered cashback", "provider": "Net-loss windows", "tag": "VIP", "hue": "gold", "hint": "Often capped % per tier — weekends vs weekdays differ" },
+          { "name": "Loss-back rescue vouchers", "provider": "Triggered rebates", "tag": "Rescue", "hue": "wine", "hint": "Threshold triggers print wagering on winnings — read twice" },
+          { "name": "Mission ladder progressions", "provider": "Coin XP arcs", "tag": "Missions", "hue": "neon", "hint": "Weekly resets — screenshot progress bars before midnight UTC drift" },
+          { "name": "Coin shop exchanges", "provider": "Merch / spins / boosts", "tag": "Shop", "hue": "pink", "hint": "Inventory rotates — redemption ratios not always 1:1 cash value" },
+          { "name": "Birthday / anniversary credits", "provider": "Loyalty desk", "tag": "Birthday", "hue": "rose", "hint": "Requires verified profile dates — posting delays happen during peaks" },
+          { "name": "Host-negotiated high roller deals", "provider": "VIP desk", "tag": "Private", "hue": "slate", "hint": "Invite flows — handshake terms supersede generic banners verbally only until written" },
+          { "name": "Table-game rebate nights", "provider": "RNG + live splits", "tag": "Tables", "hue": "emerald", "hint": "Provider-specific exclusions — watch contribution charts per studio" },
+          { "name": "Crypto reload accelerators", "provider": "Wallet rails", "tag": "Crypto+", "hue": "ocean", "hint": "Whitelist addresses — FX disclosure lines affect realised value" }
+        ]
+      },
+      {
+        "id": "sports-specials-crossover",
+        "title": "Sports, specials & crossover mechanics",
+        "subtitle": "Accumulator storytelling, boosted ladders, and hybrid rebates — separate bankrolls still rule.",
+        "games": [
+          { "name": "Accumulator insurance narratives", "provider": "Multi-leg slips", "tag": "Accas", "hue": "azure", "hint": "Minimum legs + football-only clauses — void selections void promo logic" },
+          { "name": "Early payout eligible fixtures", "provider": "Listed leagues", "tag": "Football", "hue": "jade", "hint": "Cash-out interplay differs — confirm trader coverage live" },
+          { "name": "Esports boosted ladders", "provider": "MOBA / FPS", "tag": "Esports", "hue": "neon", "hint": "Patch volatility disclaimer — odds freeze moments awkward on mobile LTE" },
+          { "name": "In-play free bet envelopes", "provider": "Live markets", "tag": "Live bet", "hue": "ruby", "hint": "Minimum odds thresholds — grind wagering before withdrawals unlock" },
+          { "name": "Regional combo specials", "provider": "APAC majors", "hue": "sunset", "tag": "Regional", "hint": "Combo-leg bans exist — tie-break score props messy without docs" },
+          { "name": "Virtual sports cashback trials", "provider": "Fast cadence", "tag": "Virtual", "hue": "sand", "hint": "Separate RTP sheets — treat pacing like arcade slots budgeting" },
+          { "name": "Jackpot-linked prize drops", "provider": "Network pools", "tag": "Jackpot", "hue": "gold", "hint": "Contribution rates rarely headline — inspect promo appendix tables" },
+          { "name": "Leaderboard splits & tiers", "provider": "Tournaments", "tag": "Race", "hue": "wine", "hint": "Opaque points maths — screenshot leaderboard FAQ nightly resets" },
+          { "name": "Cross-wallet rescue rebates", "provider": "Slots + sports mix", "tag": "Hybrid", "hue": "crimson", "hint": "Reporting latency across products — reconcile timestamps vs statements" },
+          { "name": "Responsible-play acknowledgment perks", "provider": "Wellbeing flows", "tag": "RG+", "hue": "slate", "hint": "Cool-off perks vary — never chase bonuses instead of breaks" }
+        ]
+      }
+    ]
   }
 }

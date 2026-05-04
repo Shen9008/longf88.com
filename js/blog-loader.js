@@ -210,6 +210,20 @@
         navEl.innerHTML = '<ul class="news-pagination__list">' + items.join('') + '</ul>';
     }
 
+    function comparePostsByRecency(a, b) {
+        var pub =
+            new Date(b.published_date || 0).getTime() - new Date(a.published_date || 0).getTime();
+        if (pub !== 0) return pub;
+        var upd =
+            new Date(b.updated_at || b.published_date || 0).getTime() -
+            new Date(a.updated_at || a.published_date || 0).getTime();
+        if (upd !== 0) return upd;
+        var sync =
+            new Date(b.synced_at || 0).getTime() - new Date(a.synced_at || 0).getTime();
+        if (sync !== 0) return sync;
+        return String(a.slug || '').localeCompare(String(b.slug || ''));
+    }
+
     function run() {
         var grid = document.getElementById('blog-grid');
         var status = document.getElementById('blog-grid-status');
@@ -241,11 +255,7 @@
 
                 status.classList.remove('news-hub__status--empty');
 
-                blogs.sort(function (a, b) {
-                    var da = new Date(a.published_date || 0).getTime();
-                    var db = new Date(b.published_date || 0).getTime();
-                    return db - da;
-                });
+                blogs.sort(comparePostsByRecency);
 
                 var valid = blogs.filter(function (p) {
                     return (p.slug || '').trim().length > 0;

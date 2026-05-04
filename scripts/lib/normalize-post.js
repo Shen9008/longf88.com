@@ -29,6 +29,10 @@ function normalizePost(strapiPost, opts = {}) {
   const updatedAt = strapiPost.updatedAt || publishedAt;
 
   const publishedDate = formatDateISO(publishedAt);
+  const updatedAtIso =
+    toIsoTimestamp(strapiPost.updatedAt) ||
+    toIsoTimestamp(strapiPost.publishedAt) ||
+    toIsoTimestamp(publishedAt);
   const searchIntent = (opts.searchIntent || strapiPost.search_intent || 'informational').toLowerCase();
   const gradient = INTENT_GRADIENTS[searchIntent] || INTENT_GRADIENTS.informational;
   const category = INTENT_CATEGORIES[searchIntent] || 'Informational';
@@ -51,7 +55,15 @@ function normalizePost(strapiPost, opts = {}) {
     toc_json: strapiPost.toc_json || [],
     published_date_formatted: formatDateLong(publishedAt),
     updated_date_iso: formatDateISO(updatedAt),
+    updated_at: updatedAtIso,
   };
+}
+
+function toIsoTimestamp(val) {
+  if (val == null || val === '') return '';
+  const t = new Date(val).getTime();
+  if (Number.isNaN(t)) return '';
+  return new Date(val).toISOString();
 }
 
 function formatReadingTime(val) {

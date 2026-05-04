@@ -17,6 +17,7 @@ const BLOGS_JSON_FIELDS = [
   'slug', 'title', 'meta_title', 'meta_description', 'focus_keyword',
   'category', 'search_intent', 'published_date', 'reading_time',
   'excerpt', 'placeholder_gradient', 'related_posts', 'keywords',
+  'updated_date_iso', 'updated_at', 'synced_at',
 ];
 
 function toBlogsEntry(normalized) {
@@ -27,11 +28,29 @@ function toBlogsEntry(normalized) {
   return entry;
 }
 
+function comparePostsByRecency(a, b) {
+  const pub =
+    new Date(b.published_date || 0).getTime() - new Date(a.published_date || 0).getTime();
+  if (pub !== 0) return pub;
+  const upd =
+    new Date(b.updated_at || b.published_date || 0).getTime() -
+    new Date(a.updated_at || a.published_date || 0).getTime();
+  if (upd !== 0) return upd;
+  const sync =
+    new Date(b.synced_at || 0).getTime() - new Date(a.synced_at || 0).getTime();
+  if (sync !== 0) return sync;
+  return String(a.slug || '').localeCompare(String(b.slug || ''));
+}
+
+function sortBlogsForDisplay(blogs) {
+  return [...blogs].sort(comparePostsByRecency);
+}
+
 function getRelatedSlugs(blogs, currentSlug, opts = {}, limit = 3) {
   const searchIntent = (opts.searchIntent || 'informational').toLowerCase();
   const category = (opts.category || '').toLowerCase();
   const others = blogs.filter((b) => b.slug !== currentSlug);
-  const byDate = (a, b) => new Date(b.published_date || 0) - new Date(a.published_date || 0);
+  const byDate = comparePostsByRecency;
 
   const sameIntent = others.filter((b) => (b.search_intent || '').toLowerCase() === searchIntent).sort(byDate);
   const sameIntentSlugs = new Set(sameIntent.map((b) => b.slug));
@@ -139,11 +158,12 @@ async function run() {
     renderArticle(normalized, { blogs });
 
     const entry = toBlogsEntry(normalized);
+    entry.synced_at = new Date().toISOString();
     blogs.push(entry);
     allSlugs.push(slug);
   }
 
-  saveBlogsJson(blogs);
+  saveBlogsJson(sortBlogsForDisplay(blogs));
   generateSitemap();
   console.log('Done. blogs.json and sitemap.xml updated.');
 }

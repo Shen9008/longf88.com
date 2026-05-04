@@ -1,22 +1,46 @@
 /**
  * longf88.com — load SVG sprite, header, footer, optional CTA after first main section.
  * body[data-page] sets active nav. Works from site root (add ../ for subfolders later).
+ * Partials use .fragment (not .html) so VS Code Live Server cannot inject SVG-breaking reload scripts into fetch() responses (see vscode-live-server #182 / #684).
  */
 (function () {
     'use strict';
 
     var pathname = window.location.pathname || '';
-    var base = pathname.split('/').length > 2 && pathname.indexOf('/news/') !== -1 ? '../' : '';
+
+    function computeAssetBase(pathStr) {
+        var pathNormalized = (pathStr || '').replace(/\/+$/, '');
+        var parts = pathNormalized.split('/').filter(Boolean);
+        if (
+            parts.length &&
+            /\.[a-z0-9]+$/i.test(parts[parts.length - 1])
+        ) {
+            parts.pop();
+        }
+        var depth = parts.length;
+        var out = '';
+        var i;
+        for (i = 0; i < depth; i++) out += '../';
+        return out;
+    }
+
+    var base = computeAssetBase(pathname);
 
     function rewriteLinks(html) {
-        var isSub = base === '../';
-        if (!isSub) return html;
-        var rootPages = ['index.html', 'slots.html', 'live-casino.html', 'sports-betting.html', 'promotions.html', 'payments.html', 'licensing.html', 'about.html', 'responsible-gambling.html', 'help.html', 'terms.html', 'privacy.html'];
-        html = html.replace(/\shref="(?!https?:\/\/|#|mailto:|\.\.\/)([^"]+)"/g, function (_, href) {
-            if (rootPages.indexOf(href) !== -1) return ' href="../' + href + '"';
-            return ' href="' + href + '"';
+        if (!base) return html;
+        html = html.replace(/\shref="([^"]+)"/g, function (full, href) {
+            if (
+                /^https?:\/\//i.test(href) ||
+                /^mailto:/i.test(href) ||
+                href.charAt(0) === '#' ||
+                href.startsWith('//')
+            )
+                return full;
+            if (href.charAt(0) === '/') return full;
+            if (href.startsWith('../')) return full;
+            return ' href="' + base + href + '"';
         });
-        html = html.replace(/\ssrc="images\//g, ' src="../images/');
+        html = html.replace(/\ssrc="images\//g, ' src="' + base + 'images/');
         return html;
     }
 
@@ -37,6 +61,7 @@
             '<symbol id="icon-close" viewBox="0 0 24 24" fill="currentColor"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></symbol>',
             '<symbol id="icon-sparkle" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.8 5.4L19 12l-5.2 2.8L12 22l-1.8-5.4L5 12l5.2-2.8L12 2z"/></symbol>',
             '<symbol id="icon-slots" viewBox="0 0 24 24" fill="currentColor"><path d="M5 4h4v16H5V4zm5 0h4v16h-4V4zm5 0h4v16h-4V4z"/></symbol>',
+            '<symbol id="icon-lanes" viewBox="0 0 24 24" fill="currentColor"><path d="M4.5 6.5h3.25v11H4.5v-11zm6.12 2.75h3.25v8.25h-3.25v-8.25zm6.13-.5h3.25v8.75h-3.25V8.75z"/></symbol>',
             '<symbol id="icon-live" viewBox="0 0 24 24" fill="currentColor"><path d="M4 7h11v10H4V7zm13 1.5l5 3.5-5 3.5V8.5z"/></symbol>',
             '<symbol id="icon-sports" viewBox="0 0 24 24" fill="currentColor"><path d="M14.4 6L14 4H5v17h2v-7h5.6l.4 2h7V6h-5.6z"/></symbol>',
             '<symbol id="icon-chart" viewBox="0 0 24 24" fill="currentColor"><path d="M4 19h16v2H4v-2zm2-4h3v4H6v-4zm4-6h3v10h-3V9zm4-4h3v14h-3V5z"/></symbol>',
@@ -52,7 +77,8 @@
             '<symbol id="icon-mobile" viewBox="0 0 24 24" fill="currentColor"><path d="M7 2h10a2 2 0 012 2v16a2 2 0 01-2 2H7a2 2 0 01-2-2V4a2 2 0 012-2zm5 18a1 1 0 100-2 1 1 0 000 2z"/></symbol>',
             '<symbol id="icon-heart" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></symbol>',
             '<symbol id="icon-book" viewBox="0 0 24 24" fill="currentColor"><path d="M6 4h7v16H6a2 2 0 01-2-2V6a2 2 0 012-2zm9 0h5a2 2 0 012 2v14a2 2 0 01-2 2h-5V4z"/></symbol>',
-            '<symbol id="icon-clock" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm.5 5H11v6l5.2 3.2.8-1.3-4.5-2.7V7z"/></symbol>',
+            '<symbol id="icon-clock" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 3c4.42 0 8 3.58 8 8s-3.58 8-8 8-8-3.58-8-8 3.58-8 8-8z"/><path d="M13 7h-2v5.59l3.52 2.12 1.03-1.71L13 12.17V7z"/></symbol>',
+            '<symbol id="icon-stopwatch" viewBox="0 0 24 24" fill="currentColor"><path d="M11 1h2v2.5h-2V1z"/><path fill-rule="evenodd" d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 3c4.42 0 8 3.58 8 8s-3.58 8-8 8-8-3.58-8-8 3.58-8 8-8z"/><path d="M13 8.25h-2v4.72l2.95 1.77 1.02-1.69-1.97-1.18V8.25z"/></symbol>',
             '<symbol id="icon-circle-check" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/><path d="M10.5 14.26L7.24 11l1.41-1.41L10.5 11.44l4.59-4.59L16.41 8.2l-5.91 6.06z"/></symbol>',
             '<symbol id="icon-home" viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></symbol>',
             '<symbol id="icon-cards" viewBox="0 0 24 24" fill="currentColor"><path d="M4 6h16v2H4V6zm0 5h10v2H4v-2zm0 5h16v2H4v-2z"/></symbol>',
@@ -70,7 +96,10 @@
         if (document.getElementById('svg-sprite')) {
             return Promise.resolve();
         }
-        return fetch(base + 'images/icons.svg', { credentials: 'same-origin' })
+        return fetch(base + 'images/icons.svg', {
+            credentials: 'same-origin',
+            cache: 'no-store'
+        })
             .then(function (r) {
                 if (!r.ok) throw new Error('icons.svg ' + r.status);
                 return r.text();
@@ -96,8 +125,14 @@
             })
             .then(function () {
                 return Promise.all([
-                    fetch(base + 'partials/header.html').then(function (r) { return r.text(); }),
-                    fetch(base + 'partials/footer.html').then(function (r) { return r.text(); })
+                    fetch(base + 'partials/header.fragment', {
+                        credentials: 'same-origin',
+                        cache: 'no-store'
+                    }).then(function (r) { return r.text(); }),
+                    fetch(base + 'partials/footer.fragment', {
+                        credentials: 'same-origin',
+                        cache: 'no-store'
+                    }).then(function (r) { return r.text(); })
                 ]);
             })
             .then(function (parts) {
@@ -117,14 +152,17 @@
 
                 var main = document.getElementById('main-content');
                 if (main) {
-                    fetch(base + 'partials/cta-banner.html').then(function (r) { return r.text(); }).then(function (html) {
+                    fetch(base + 'partials/cta-banner.fragment').then(function (r) { return r.text(); }).then(function (html) {
                         var first = main.querySelector('section');
                         if (first) first.insertAdjacentHTML('afterend', rewriteLinks(html));
+                        if (typeof window.lf88AttachReveal === 'function') {
+                            window.lf88AttachReveal(main);
+                        }
                     }).catch(function () {});
 
                     var explorePartial = document.body.getAttribute('data-explore-partial');
                     if (explorePartial) {
-                        fetch(base + 'partials/explore-' + explorePartial + '.html').then(function (r) { return r.text(); }).then(function (html) {
+                        fetch(base + 'partials/explore-' + explorePartial + '.fragment').then(function (r) { return r.text(); }).then(function (html) {
                             main.insertAdjacentHTML('beforeend', rewriteLinks(html));
                             if (typeof window.lf88AttachReveal === 'function') {
                                 window.lf88AttachReveal(main);

@@ -1,13 +1,26 @@
 {
   "private": true,
-  "type": "module",
   "scripts": {
     "serve": "npx --yes serve . -p 3456",
+    "sync": "node scripts/content-sync.js",
+    "sync:all": "node scripts/content-sync.js --all",
+    "backfill": "node scripts/backfill-internal-links.js",
+    "backfill:force": "node scripts/backfill-internal-links.js --force",
+    "audit:links": "node scripts/audit-internal-links.js",
+    "articles:refresh": "node scripts/refresh-article-pages.js",
+    "deploy": "wrangler pages deploy . --project-name longf88 --branch main --commit-dirty=true",
     "cf:login": "wrangler login",
     "cf:logout": "wrangler logout",
     "cf:whoami": "wrangler whoami",
     "cf:delete-project": "wrangler pages project delete longf88 -y",
     "cf:create-project": "wrangler pages project create longf88 --production-branch main",
     "cf:deploy": "wrangler pages deploy . --project-name longf88 --branch main --commit-dirty=true"
+  },
+  "devDependencies": {
+    "dotenv": "^16.6.1",
+    "form-data": "^4.0.5",
+    "glob": "^11.0.3",
+    "sharp": "^0.34.4",
+    "wrangler": "^4.53.1"
   }
 }

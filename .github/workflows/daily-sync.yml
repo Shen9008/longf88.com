@@ -1,0 +1,76 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+name: Daily Sync
+
+on:
+  schedule:
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: daily-sync-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    env:
+      NODE_OPTIONS: --no-deprecation
+      # Repository Variables (Settings -> Secrets and variables -> Actions -> Variables).
+      # Defaults apply when a variable is unset. Double-quote so YAML does not misparse ":" in https URLs.
+      SITE_BASE_URL: "${{ vars.SITE_BASE_URL || 'https://longf88.com' }}"
+      BLOG_BASE_PATH: "${{ vars.BLOG_BASE_PATH || '/news' }}"
+      STRAPI_COLLECTION: "${{ vars.STRAPI_COLLECTION || 'posts' }}"
+      SITE_DOMAIN: "${{ vars.SITE_DOMAIN }}"
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check Strapi secrets
+        run: |
+          if [ -z "${STRAPI_API_URL:-}" ] || [ -z "${STRAPI_API_TOKEN:-}" ]; then
+            echo '::error::Configure Actions secrets STRAPI_API_URL and STRAPI_API_TOKEN (Settings -> Secrets and variables -> Actions).'
+            exit 1
+          fi
+        env:
+          STRAPI_API_URL: ${{ secrets.STRAPI_API_URL }}
+          STRAPI_API_TOKEN: ${{ secrets.STRAPI_API_TOKEN }}
+
+      - name: Sync content from Strapi
+        run: npm run sync
+        env:
+          STRAPI_API_URL: ${{ secrets.STRAPI_API_URL }}
+          STRAPI_API_TOKEN: ${{ secrets.STRAPI_API_TOKEN }}
+
+      - name: Generate internal links
+        run: npm run backfill-links
+
+      - name: Check Cloudflare secrets
+        run: |
+          if [ -z "${CLOUDFLARE_API_TOKEN:-}" ] || [ -z "${CLOUDFLARE_ACCOUNT_ID:-}" ]; then
+            echo '::error::Configure Actions secrets CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID (Settings -> Secrets and variables -> Actions).'
+            exit 1
+          fi
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
+      - name: Deploy to Cloudflare Pages
+        run: npm run deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}

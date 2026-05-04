@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{META_TITLE}}</title>
+  <meta name="description" content="{{META_DESCRIPTION}}">
+  <meta name="keywords" content="{{KEYWORDS}}">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#dc2626">
+  <link rel="canonical" href="{{SITE_ORIGIN}}/{{BLOG_SEGMENT}}/{{SLUG}}/">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="longf88.com">
+  <meta property="og:url" content="{{SITE_ORIGIN}}/{{BLOG_SEGMENT}}/{{SLUG}}/">
+  <meta property="og:title" content="{{META_TITLE}}">
+  <meta property="og:description" content="{{META_DESCRIPTION}}">
+  <meta property="article:published_time" content="{{PUBLISHED_DATE_ISO}}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{META_TITLE}}">
+  <meta name="twitter:description" content="{{META_DESCRIPTION}}">
+  <link rel="alternate" hreflang="en" href="{{SITE_ORIGIN}}/{{BLOG_SEGMENT}}/{{SLUG}}/">
+  <link rel="alternate" hreflang="x-default" href="{{SITE_ORIGIN}}/{{BLOG_SEGMENT}}/{{SLUG}}/">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="apple-touch-icon" href="../../images/apple-touch-icon.png" sizes="180x180">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" href="../../images/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../css/main.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": {{TITLE_JSON}},
+    "description": {{META_DESCRIPTION_JSON}},
+    "datePublished": "{{PUBLISHED_DATE_ISO}}",
+    "dateModified": "{{UPDATED_DATE_ISO}}",
+    "author": {
+      "@type": "Organization",
+      "name": "longf88.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "longf88.com",
+      "url": "{{SITE_ORIGIN}}/"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "{{SITE_ORIGIN}}/{{BLOG_SEGMENT}}/{{SLUG}}/"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "{{SITE_ORIGIN}}/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "News",
+        "item": "{{SITE_ORIGIN}}/{{BLOG_SEGMENT}}/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": {{TITLE_JSON}},
+        "item": "{{SITE_ORIGIN}}/{{BLOG_SEGMENT}}/{{SLUG}}/"
+      }
+    ]
+  }
+  </script>
+
+  {{FAQ_SCHEMA_SCRIPT}}
+
+</head>
+<body class="blog-article" data-page="blog" data-blog-slug="{{SLUG}}">
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <div id="partial-header"></div>
+
+  <main id="main-content">
+    <header class="page-hero">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> / <a href="../index.html">News</a> / <span class="breadcrumb__current" aria-current="page">Article</span></nav>
+        <div class="page-hero__banner-slot page-hero__banner-slot--img-news article-hero__banner" aria-hidden="true"></div>
+        <div class="article-hero__meta">
+          <span>{{CATEGORY}}</span>
+          <span>{{PUBLISHED_DATE_FORMATTED}}</span>
+          <span>{{READING_TIME}}</span>
+        </div>
+        <h1 class="page-hero__title">{{TITLE}}</h1>
+        <p class="page-hero__summary">{{EXCERPT}}</p>
+        <p class="article-hero__share">
+          <span class="article-hero__share-label">Share:</span>
+          <a href="https://twitter.com/intent/tweet?url={{SHARE_URL}}&text={{SHARE_TITLE}}" target="_blank" rel="noopener">Twitter</a>
+          <span class="article-hero__share-sep" aria-hidden="true">·</span>
+          <a href="https://www.facebook.com/sharer/sharer.php?u={{SHARE_URL}}" target="_blank" rel="noopener">Facebook</a>
+        </p>
+      </div>
+    </header>
+
+    <section class="section article-visual">
+      <div class="container">
+        <div class="article-visual__bar article-visual__bar--brand" role="presentation" aria-hidden="true">{{FOCUS_KEYWORD}}</div>
+      </div>
+    </section>
+
+    <article class="section section--alt blog-article__body">
+      <div class="container prose article-prose">
+        {{TOC_HTML}}
+        <div id="article-body" class="article-prose__content">
+          <!-- article-sync-start -->
+          {{ARTICLE_BODY}}
+          <!-- article-sync-end -->
+        </div>
+
+        <section class="article-end-cta" aria-label="Call to action">
+          <h2 class="article-end-cta__title">Play smarter on LongFu88</h2>
+          <p class="article-end-cta__text">This guide summarizes what you&apos;ll find on LongFu88 &mdash; always confirm live offers inside your verified account.</p>
+          <a href="../../promotions.html" class="btn btn--gold">View promotions</a>
+        </section>
+      </div>
+    </article>
+
+    <section class="section blog-article__related" id="related-posts-root" aria-label="Related posts" hidden>
+      <div class="container">
+        <header class="section__header section__header--related">
+          <h2 class="section__title">Related guides</h2>
+        </header>
+        <ul id="related-posts" class="related-posts__list"></ul>
+      </div>
+    </section>
+  </main>
+
+  <div id="partial-footer"></div>
+
+  <script defer src="../../js/load-partials.js"></script>
+  <script defer src="../../js/main.js"></script>
+  <script defer src="../../js/blog-related.js"></script>
+</body>
+</html>

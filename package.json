@@ -5,6 +5,7 @@
     "sync": "node scripts/content-sync.js",
     "sync:all": "node scripts/content-sync.js --all",
     "backfill": "node scripts/backfill-internal-links.js",
+    "backfill-links": "node scripts/backfill-internal-links.js",
     "backfill:force": "node scripts/backfill-internal-links.js --force",
     "audit:links": "node scripts/audit-internal-links.js",
     "articles:refresh": "node scripts/refresh-article-pages.js",

@@ -1,5 +1,8 @@
 {
   "private": true,
+  "engines": {
+    "node": ">=22.0.0"
+  },
   "scripts": {
     "serve": "npx --yes serve . -p 3456",
     "sync": "node scripts/content-sync.js",

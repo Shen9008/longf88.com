@@ -1957,8 +1957,25 @@ img {
     text-decoration: underline;
     text-underline-offset: 2px;
 }
-
 .footer__meta a:hover {
+    color: var(--lf-red-dark);
+}
+
+.footer__contact {
+    font-size: 0.82rem;
+    color: var(--lf-subtle);
+    margin-top: 0.65rem;
+    max-width: 46ch;
+    line-height: 1.5;
+}
+
+.footer__contact a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.footer__contact a:hover {
     color: var(--lf-red-dark);
 }
 

@@ -2,7 +2,16 @@
 
 const fs = require('fs');
 const path = require('path');
-require('dotenv').config({ path: path.join(__dirname, '..', '.env.local') });
+
+const ROOT = path.resolve(__dirname, '..');
+require('dotenv').config({ path: path.join(ROOT, '.env.local') });
+
+if (!String(process.env.BLOG_BASE_PATH || '').trim()) {
+  const newsHub = path.join(ROOT, 'news', 'index.html');
+  if (fs.existsSync(newsHub)) {
+    process.env.BLOG_BASE_PATH = 'news';
+  }
+}
 
 const { fetchPosts } = require('./lib/fetch-posts.js');
 const { normalizePost, validatePost } = require('./lib/normalize-post.js');
@@ -10,7 +19,6 @@ const { renderArticle } = require('./lib/render-article.js');
 const { generateSitemap } = require('./lib/generate-sitemap.js');
 const { getBlogSegment, getSiteOrigin, getSyncSiteHostname } = require('./lib/site-origin.js');
 
-const ROOT = path.resolve(__dirname, '..');
 const BLOGS_JSON_PATH = path.join(ROOT, 'assets/data/blogs.json');
 
 const BLOGS_JSON_FIELDS = [

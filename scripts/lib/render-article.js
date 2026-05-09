@@ -52,8 +52,16 @@ function escapeHtml(s) {
     .replace(/"/g, '&quot;');
 }
 
-function jsonLdString(value) {
-  return JSON.stringify(value == null ? '' : String(value));
+/** ISO 8601 for schema datePublished / dateModified when only a calendar date exists. */
+function toSchemaDateTime(value, fallbackUtcMs) {
+  if (fallbackUtcMs != null && fallbackUtcMs !== '') {
+    const t = new Date(fallbackUtcMs).getTime();
+    if (!Number.isNaN(t)) return new Date(t).toISOString();
+  }
+  if (value == null || value === '') return '';
+  const s = String(value);
+  if (s.includes('T')) return s;
+  return `${s}T12:00:00.000Z`;
 }
 
 /**
@@ -90,36 +98,121 @@ function richTextBlockToHtml(block) {
 }
 
 /**
- * Builds FAQ schema script tag from FAQ data, or empty string.
+ * FAQ Question/Answer nodes for JSON-LD @graph (no wrapper).
  * @param {Array} faqItems - [{ question, answer }]
- * @returns {string}
+ * @returns {object[]}
  */
-function buildFaqSchemaScript(faqItems) {
-  if (!Array.isArray(faqItems) || faqItems.length === 0) {
-    return '';
-  }
-  const mainEntity = faqItems.map((item) => ({
-    '@type': 'Question',
-    name: item.question || item.name || '',
-    acceptedAnswer: {
-      '@type': 'Answer',
-      text: item.answer || item.text || '',
+function buildFaqMainEntities(faqItems) {
+  if (!Array.isArray(faqItems) || faqItems.length === 0) return [];
+  return faqItems
+    .map((item) => ({
+      '@type': 'Question',
+      name: item.question || item.name || '',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.answer || item.text || '',
+      },
+    }))
+    .filter((q) => q.name && q.acceptedAnswer.text);
+}
+
+/**
+ * Single JSON-LD script: Organization (by @id), WebPage, Article, BreadcrumbList, optional FAQPage.
+ */
+function buildArticleJsonLdScript(origin, blogSeg, normalized, faqItems) {
+  const pageUrl = `${origin}/${blogSeg}/${normalized.slug}/`;
+  const orgId = `${origin}/#organization`;
+  const websiteId = `${origin}/#website`;
+  const webpageId = `${pageUrl}#webpage`;
+  const articleId = `${pageUrl}#article`;
+  const title = normalized.title;
+  const pageName = normalized.meta_title || title;
+  const description = normalized.meta_description || normalized.excerpt || '';
+  const shareImage = `${origin}/images/hero-about.webp`;
+
+  const datePublished = toSchemaDateTime(normalized.published_date);
+  const dateModified = toSchemaDateTime(
+    normalized.updated_date_iso || normalized.published_date,
+    normalized.updated_at,
+  );
+
+  const graph = [
+    {
+      '@type': 'Organization',
+      '@id': orgId,
+      name: 'longf88.com',
+      url: `${origin}/`,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${origin}/images/logo.svg`,
+        width: 188,
+        height: 44,
+      },
     },
-  })).filter((q) => q.name && q.acceptedAnswer.text);
+    {
+      '@type': 'WebPage',
+      '@id': webpageId,
+      url: pageUrl,
+      name: pageName,
+      description,
+      isPartOf: { '@id': websiteId },
+      publisher: { '@id': orgId },
+      inLanguage: 'en',
+      primaryImageOfPage: {
+        '@type': 'ImageObject',
+        url: shareImage,
+      },
+    },
+    {
+      '@type': 'Article',
+      '@id': articleId,
+      headline: title,
+      description,
+      datePublished,
+      dateModified: dateModified || datePublished,
+      author: { '@id': orgId },
+      publisher: { '@id': orgId },
+      image: {
+        '@type': 'ImageObject',
+        url: shareImage,
+      },
+      mainEntityOfPage: { '@id': webpageId },
+      isPartOf: { '@id': websiteId },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: `${origin}/` },
+        { '@type': 'ListItem', position: 2, name: 'News', item: `${origin}/${blogSeg}/` },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: title,
+          item: pageUrl,
+        },
+      ],
+    },
+  ];
 
-  if (mainEntity.length === 0) return '';
+  const faqEntity = buildFaqMainEntities(faqItems);
+  if (faqEntity.length > 0) {
+    graph.push({
+      '@type': 'FAQPage',
+      '@id': `${pageUrl}#faq`,
+      mainEntity: faqEntity,
+    });
+  }
 
-  const json = JSON.stringify({
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity,
-  }, null, 2);
+  const json = JSON.stringify(
+    {
+      '@context': 'https://schema.org',
+      '@graph': graph,
+    },
+    null,
+    2,
+  );
 
-  return `  <!-- Schema Markup: FAQPage -->
-  <script type="application/ld+json">
-  ${json}
-  </script>
-`;
+  return `  <script type="application/ld+json">\n  ${json}\n  </script>`;
 }
 
 /**
@@ -152,15 +245,14 @@ function renderArticle(normalized, opts = {}) {
         relatedSlugs: new Set(normalized.related_posts || []),
       })
     : articleBodyRaw;
-  const faqScript = buildFaqSchemaScript(opts.faqItems || normalized.faq || []);
+  const jsonLdScript = buildArticleJsonLdScript(origin, blogSeg, normalized, opts.faqItems || normalized.faq || []);
+  const shareImageUrl = `${origin}/images/hero-about.webp`;
 
   const keywords = normalized.focus_keyword || normalized.title;
 
   const replacements = {
     '{{SITE_ORIGIN}}': origin,
     '{{BLOG_SEGMENT}}': blogSeg,
-    '{{TITLE_JSON}}': jsonLdString(normalized.title),
-    '{{META_DESCRIPTION_JSON}}': jsonLdString(normalized.meta_description || normalized.excerpt || ''),
     '{{META_TITLE}}': normalized.meta_title || normalized.title,
     '{{META_DESCRIPTION}}': normalized.meta_description || normalized.excerpt || '',
     '{{KEYWORDS}}': keywords,
@@ -177,7 +269,8 @@ function renderArticle(normalized, opts = {}) {
     '{{ARTICLE_BODY}}': articleBody,
     '{{SHARE_URL}}': baseUrl,
     '{{SHARE_TITLE}}': shareTitle,
-    '{{FAQ_SCHEMA_SCRIPT}}': faqScript,
+    '{{DEFAULT_SHARE_IMAGE}}': shareImageUrl,
+    '{{JSON_LD_SCRIPT}}': jsonLdScript,
   };
 
   for (const [token, value] of Object.entries(replacements)) {
@@ -192,4 +285,4 @@ function renderArticle(normalized, opts = {}) {
   return outPath;
 }
 
-module.exports = { renderArticle, buildTocHtml, ensureHtml, buildFaqSchemaScript };
+module.exports = { renderArticle, buildTocHtml, ensureHtml, buildArticleJsonLdScript, buildFaqMainEntities };

@@ -7,12 +7,20 @@
  */
 const fs = require('fs');
 const path = require('path');
-const { renderArticle } = require('./lib/render-article.js');
-const { formatDateLong, formatDateISO } = require('./lib/normalize-post.js');
-const { getBlogSegment } = require('./lib/site-origin.js');
 
 const ROOT = path.resolve(__dirname, '..');
 require('dotenv').config({ path: path.join(ROOT, '.env.local') });
+
+if (!String(process.env.BLOG_BASE_PATH || '').trim()) {
+  const newsHub = path.join(ROOT, 'news', 'index.html');
+  if (fs.existsSync(newsHub)) {
+    process.env.BLOG_BASE_PATH = 'news';
+  }
+}
+
+const { renderArticle } = require('./lib/render-article.js');
+const { formatDateLong, formatDateISO } = require('./lib/normalize-post.js');
+const { getBlogSegment } = require('./lib/site-origin.js');
 
 const BLOGS_PATH = path.join(ROOT, 'assets/data/blogs.json');
 
@@ -27,7 +35,9 @@ function blogsEntryToNormalized(entry, content) {
     category: entry.category || 'Informational',
     published_date: pd,
     published_date_formatted: formatDateLong(pd) || pd,
-    updated_date_iso: formatDateISO(pd) || pd,
+    updated_date_iso:
+      entry.updated_date_iso || formatDateISO(entry.updated_at) || formatDateISO(pd) || pd,
+    updated_at: entry.updated_at || '',
     reading_time: entry.reading_time || '5 min read',
     focus_keyword: entry.focus_keyword || entry.title,
     content,

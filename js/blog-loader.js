@@ -43,6 +43,15 @@
             .replace(/"/g, '&quot;');
     }
 
+    var DEFAULT_BLOG_IMAGE = '/images/blog-default.png';
+
+    function postImageSrc(post) {
+        var img = (post.featured_image || '').trim();
+        if (!img) return DEFAULT_BLOG_IMAGE;
+        if (/^https?:\/\//i.test(img)) return img;
+        return img.charAt(0) === '/' ? img : '/' + img;
+    }
+
     function buildCard(post) {
         var slug = post.slug || '';
         if (!slug) return null;
@@ -50,16 +59,19 @@
         var art = document.createElement('article');
         art.className = 'feature-card feature-card--visual news-card';
 
-        var href = encodeURI('./' + slug + '/');
+        var href = encodeURI('/news/' + slug + '/');
+        var imgSrc = postImageSrc(post);
+        var imgAlt = escapeHtml(post.title || 'LongFu88 guide');
 
         art.innerHTML =
             '<a href="' +
             href +
-            '" class="feature-card__thumb feature-card__thumb--icon news-card__thumb news-card__thumb--brand">' +
-            '<span class="news-card__thumb-overlay" aria-hidden="true"></span>' +
-            '<span class="news-card__kicker">' +
-            escapeHtml(post.focus_keyword || post.title || '') +
-            '</span></a>' +
+            '" class="feature-card__thumb news-card__thumb">' +
+            '<img src="' +
+            escapeHtml(imgSrc) +
+            '" alt="' +
+            imgAlt +
+            '" width="1672" height="941" loading="lazy" decoding="async"></a>' +
             '<div class="feature-card__title"><a href="' +
             href +
             '">' +
@@ -211,27 +223,49 @@
     }
 
     function comparePostsByRecency(a, b) {
+        var aHasSync = Boolean(a.synced_at);
+        var bHasSync = Boolean(b.synced_at);
+        if (aHasSync && !bHasSync) return -1;
+        if (!aHasSync && bHasSync) return 1;
+        if (aHasSync && bHasSync) {
+            var sync =
+                new Date(b.synced_at).getTime() - new Date(a.synced_at).getTime();
+            if (sync !== 0) return sync;
+        }
         var pub =
             new Date(b.published_date || 0).getTime() - new Date(a.published_date || 0).getTime();
         if (pub !== 0) return pub;
-        var upd =
-            new Date(b.updated_at || b.published_date || 0).getTime() -
-            new Date(a.updated_at || a.published_date || 0).getTime();
-        if (upd !== 0) return upd;
-        var sync =
-            new Date(b.synced_at || 0).getTime() - new Date(a.synced_at || 0).getTime();
-        if (sync !== 0) return sync;
-        return String(a.slug || '').localeCompare(String(b.slug || ''));
+        var cms =
+            new Date(b.cms_updated_at || 0).getTime() - new Date(a.cms_updated_at || 0).getTime();
+        if (cms !== 0) return cms;
+        return String(b.slug || '').localeCompare(String(a.slug || ''));
+    }
+
+    function renderFeatured(valid, featuredEl, featuredSection) {
+        if (!featuredEl) return;
+        featuredEl.innerHTML = '';
+        var featured = valid.slice(0, 3);
+        if (featured.length === 0) {
+            if (featuredSection) featuredSection.hidden = true;
+            return;
+        }
+        if (featuredSection) featuredSection.hidden = false;
+        featured.forEach(function (post) {
+            var art = buildCard(post);
+            if (art) featuredEl.appendChild(art);
+        });
     }
 
     function run() {
         var grid = document.getElementById('blog-grid');
         var status = document.getElementById('blog-grid-status');
         var navEl = document.getElementById('blog-pagination');
+        var featuredEl = document.getElementById('blog-featured');
+        var featuredSection = document.querySelector('.news-hub__featured');
         if (!grid) return;
 
         var base = computeAssetBase(window.location.pathname || '');
-        var jsonUrl = base + 'assets/data/blogs.json';
+        var jsonUrl = base + 'assets/data/blogs.json?v=sync-sort-2';
 
         fetch(jsonUrl, { credentials: 'same-origin' })
             .then(function (r) {
@@ -239,13 +273,15 @@
                 return r.json();
             })
             .then(function (blogs) {
-                if (!status) return;
                 if (!Array.isArray(blogs) || blogs.length === 0) {
-                    status.textContent =
-                        'No articles yet — run npm run sync after your Strapi posts are published.';
-                    status.classList.add('news-hub__status--empty');
-                    status.hidden = false;
+                    if (status) {
+                        status.textContent =
+                            'No articles published yet — check back soon.';
+                        status.classList.add('news-hub__status--empty');
+                        status.hidden = false;
+                    }
                     grid.innerHTML = '';
+                    renderFeatured([], featuredEl, featuredSection);
                     if (navEl) {
                         navEl.hidden = true;
                         navEl.innerHTML = '';
@@ -253,13 +289,17 @@
                     return;
                 }
 
-                status.classList.remove('news-hub__status--empty');
+                if (status) {
+                    status.classList.remove('news-hub__status--empty');
+                }
 
                 blogs.sort(comparePostsByRecency);
 
                 var valid = blogs.filter(function (p) {
                     return (p.slug || '').trim().length > 0;
                 });
+
+                renderFeatured(valid, featuredEl, featuredSection);
 
                 var total = valid.length;
                 var totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
@@ -273,8 +313,10 @@
                 var end = Math.min(start + PAGE_SIZE, total);
                 var slice = valid.slice(start, end);
 
-                status.innerHTML = '';
-                status.hidden = true;
+                if (status) {
+                    status.innerHTML = '';
+                    status.hidden = true;
+                }
 
                 grid.innerHTML = '';
                 slice.forEach(function (post) {
@@ -291,6 +333,7 @@
                     status.classList.add('news-hub__status--empty');
                     status.hidden = false;
                 }
+                renderFeatured([], featuredEl, featuredSection);
                 if (navEl) {
                     navEl.hidden = true;
                     navEl.innerHTML = '';

@@ -3,6 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 const { injectInternalLinks } = require('./lib/inject-internal-links.js');
+const { convertMarkdownBold } = require('./lib/format-content.js');
 const { getBlogSegment } = require('./lib/site-origin.js');
 
 const ROOT = path.resolve(__dirname, '..');
@@ -54,7 +55,7 @@ function backfillFile(filePath, blogs, force) {
   }
 
   const originalInnerHtml = match[1];
-  let innerHtml = originalInnerHtml;
+  let innerHtml = convertMarkdownBold(originalInnerHtml);
   if (force) {
     innerHtml = innerHtml.replace(getStripInternalLinksRe(), '$1');
   }
@@ -64,7 +65,7 @@ function backfillFile(filePath, blogs, force) {
   const injected = injectInternalLinks(innerHtml, blogs, slug, { relatedSlugs });
 
   if (injected === originalInnerHtml) {
-    return { status: 'skip', reason: 'no links added' };
+    return { status: 'skip', reason: 'no changes' };
   }
 
   const newInner = match[0].replace(match[1], injected);

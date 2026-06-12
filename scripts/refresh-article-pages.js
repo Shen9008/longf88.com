@@ -9,7 +9,7 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.resolve(__dirname, '..');
-require('dotenv').config({ path: path.join(ROOT, '.env.local') });
+require('./lib/load-env.js');
 
 if (!String(process.env.BLOG_BASE_PATH || '').trim()) {
   const newsHub = path.join(ROOT, 'news', 'index.html');
@@ -40,6 +40,7 @@ function blogsEntryToNormalized(entry, content) {
     updated_at: entry.updated_at || '',
     reading_time: entry.reading_time || '5 min read',
     focus_keyword: entry.focus_keyword || entry.title,
+    featured_image: entry.featured_image || '',
     content,
     toc_json: [],
     related_posts: entry.related_posts || [],

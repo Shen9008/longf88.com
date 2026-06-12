@@ -3,8 +3,16 @@
 const fs = require('fs');
 const path = require('path');
 
-const ROOT = path.resolve(__dirname, '../..');
-require('dotenv').config({ path: path.join(ROOT, '.env.local') });
+require('./load-env.js');
+
+const { ROOT } = require('./load-env.js');
+
+if (!String(process.env.BLOG_BASE_PATH || '').trim()) {
+  const newsHub = path.join(ROOT, 'news', 'index.html');
+  if (fs.existsSync(newsHub)) {
+    process.env.BLOG_BASE_PATH = 'news';
+  }
+}
 
 /**
  * Folder name under project root where article HTML lives (e.g. blog, news).

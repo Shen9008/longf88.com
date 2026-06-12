@@ -4,6 +4,8 @@ const fs = require('fs');
 const path = require('path');
 const { normalizePost, validatePost } = require('./normalize-post.js');
 const { injectInternalLinks } = require('./inject-internal-links.js');
+const { convertMarkdownBold } = require('./format-content.js');
+const { resolveBlogImageUrl, resolveBlogImageRelFromArticle } = require('./blog-image.js');
 const { getSiteOrigin, getBlogSegment } = require('./site-origin.js');
 
 const ROOT = path.resolve(__dirname, '../..');
@@ -71,7 +73,7 @@ function toSchemaDateTime(value, fallbackUtcMs) {
  */
 function ensureHtml(content) {
   if (!content) return '';
-  if (typeof content === 'string') return content;
+  if (typeof content === 'string') return convertMarkdownBold(content);
   if (Array.isArray(content)) {
     return content.map((block) => richTextBlockToHtml(block)).join('\n');
   }
@@ -82,7 +84,7 @@ function richTextBlockToHtml(block) {
   if (!block || typeof block !== 'object') return '';
   const type = block.type || block.nodeType;
   const text = block.text || block.children?.map((c) => c.text || c.value || '').join('') || '';
-  const escaped = escapeHtml(text);
+  const escaped = convertMarkdownBold(escapeHtml(text));
   if (type === 'paragraph' || type === 'p') return `<p>${escaped}</p>`;
   if (type === 'heading') {
     const level = block.level || 2;
@@ -91,7 +93,10 @@ function richTextBlockToHtml(block) {
   }
   if (type === 'list') {
     const tag = block.format === 'ordered' ? 'ol' : 'ul';
-    const items = (block.children || []).map((c) => `<li>${escapeHtml(c.text || '')}</li>`).join('');
+    const items = (block.children || []).map((c) => {
+      const itemText = convertMarkdownBold(escapeHtml(c.text || ''));
+      return `<li>${itemText}</li>`;
+    }).join('');
     return `<${tag}>${items}</${tag}>`;
   }
   return `<p>${escaped}</p>`;
@@ -128,7 +133,7 @@ function buildArticleJsonLdScript(origin, blogSeg, normalized, faqItems) {
   const title = normalized.title;
   const pageName = normalized.meta_title || title;
   const description = normalized.meta_description || normalized.excerpt || '';
-  const shareImage = `${origin}/images/hero-about.webp`;
+  const shareImage = resolveBlogImageUrl(origin, normalized);
 
   const datePublished = toSchemaDateTime(normalized.published_date);
   const dateModified = toSchemaDateTime(
@@ -144,9 +149,16 @@ function buildArticleJsonLdScript(origin, blogSeg, normalized, faqItems) {
       url: `${origin}/`,
       logo: {
         '@type': 'ImageObject',
-        url: `${origin}/images/logo.svg`,
-        width: 188,
-        height: 44,
+        url: `${origin}/images/logo.png`,
+        width: 229,
+        height: 50,
+      },
+      contactPoint: {
+        '@type': 'ContactPoint',
+        contactType: 'customer support',
+        email: 'support@longf88.com',
+        url: `${origin}/help.html`,
+        availableLanguage: ['en'],
       },
     },
     {
@@ -246,7 +258,9 @@ function renderArticle(normalized, opts = {}) {
       })
     : articleBodyRaw;
   const jsonLdScript = buildArticleJsonLdScript(origin, blogSeg, normalized, opts.faqItems || normalized.faq || []);
-  const shareImageUrl = `${origin}/images/hero-about.webp`;
+  const shareImageUrl = resolveBlogImageUrl(origin, normalized);
+  const featuredImageRel = resolveBlogImageRelFromArticle(normalized);
+  const featuredImageAlt = normalized.meta_title || normalized.title || 'LongFu88 guide';
 
   const keywords = normalized.focus_keyword || normalized.title;
 
@@ -270,6 +284,8 @@ function renderArticle(normalized, opts = {}) {
     '{{SHARE_URL}}': baseUrl,
     '{{SHARE_TITLE}}': shareTitle,
     '{{DEFAULT_SHARE_IMAGE}}': shareImageUrl,
+    '{{FEATURED_IMAGE_REL}}': featuredImageRel,
+    '{{FEATURED_IMAGE_ALT}}': featuredImageAlt,
     '{{JSON_LD_SCRIPT}}': jsonLdScript,
   };
 

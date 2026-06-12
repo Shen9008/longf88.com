@@ -1,7 +1,6 @@
 'use strict';
 
-const path = require('path');
-require('dotenv').config({ path: path.resolve(__dirname, '../../.env.local') });
+require('./load-env.js');
 
 const { getSyncSiteHostname, normalizeSiteHostname } = require('./site-origin.js');
 
@@ -22,7 +21,8 @@ function getSiteFilterStyle() {
 }
 
 function siteFilterDisabled() {
-  return /^(1|true|yes)$/i.test(process.env.STRAPI_SKIP_SITE_FILTER || '');
+  return /^(1|true|yes)$/i.test(process.env.STRAPI_SKIP_SITE_FILTER || '')
+    || /^(1|true|yes)$/i.test(process.env.SKIP_POSTS_SITE_FILTER || '');
 }
 
 function postMatchesSyncSiteField(post) {
@@ -35,12 +35,47 @@ function postMatchesSyncSiteField(post) {
   return got === expected;
 }
 
-function applyRelationSiteFilter(url, hostname) {
+function getRelationFilterParts() {
+  const filterKey = String(process.env.POSTS_SITE_FILTER_KEY || '').trim();
+  if (filterKey) {
+    const match = filterKey.match(/^filters\[([^\]]+)\]\[([^\]]+)\]\[\$eq\]$/);
+    if (match) {
+      return { rel: match[1], domainAttr: match[2] };
+    }
+  }
   const rel = (process.env.STRAPI_SITE_RELATION || 'site').trim() || 'site';
   const domainAttr =
     (process.env.STRAPI_SITE_RELATION_DOMAIN_FIELD || 'domain').trim() || 'domain';
+  return { rel, domainAttr };
+}
+
+function applyRelationSiteFilter(url, hostname) {
+  const { rel, domainAttr } = getRelationFilterParts();
   url.searchParams.set(`filters[${rel}][${domainAttr}][$eq]`, hostname);
   url.searchParams.set(`populate[${rel}]`, process.env.STRAPI_SITE_POPULATE || '*');
+}
+
+function assertSiteFilterConfig() {
+  if (!/^(1|true|yes)$/i.test(process.env.SYNC_REQUIRE_SITE_FILTER || '')) {
+    return;
+  }
+
+  const errors = [];
+  const host = getSyncSiteHostname();
+
+  if (!host) {
+    errors.push('SITE_DOMAIN is empty');
+  }
+  if (siteFilterDisabled()) {
+    errors.push('Site filter is disabled via SKIP_POSTS_SITE_FILTER or STRAPI_SKIP_SITE_FILTER');
+  }
+  if (host && !siteFilterDisabled() && getSiteFilterStyle() !== 'relation') {
+    errors.push('SYNC_REQUIRE_SITE_FILTER requires STRAPI_SITE_FILTER_STYLE=relation (API filter)');
+  }
+
+  if (errors.length) {
+    throw new Error(`Site filter required but misconfigured: ${errors.join('; ')}`);
+  }
 }
 
 /**
@@ -48,7 +83,7 @@ function applyRelationSiteFilter(url, hostname) {
  * Collection: STRAPI_COLLECTION (default mansion88-posts).
  * Pagination sorted by publishedAt ascending.
  *
- * When SITE_DOMAIN is set and STRAPI_SKIP_SITE_FILTER is unset:
+ * When SITE_DOMAIN is set and site filter skip is unset:
  * - STRAPI_SITE_FILTER_STYLE=relation (default): Strapi API filters[site][domain][$eq]=host (+ populate site).
  * - STRAPI_SITE_FILTER_STYLE=field: client filter on STRAPI_SITE_DOMAIN_FIELD (default site_domain).
  *
@@ -58,6 +93,8 @@ function applyRelationSiteFilter(url, hostname) {
  * @returns {Promise<Array>} Array of Strapi post objects
  */
 async function fetchPosts(opts = {}) {
+  assertSiteFilterConfig();
+
   const base = (opts.baseUrl || API_BASE).replace(/\/+$/, '');
   const collection = opts.collection || API_COLLECTION;
   const endpoint = `${base}/${collection}`;
@@ -84,6 +121,9 @@ async function fetchPosts(opts = {}) {
     if (useRelationApiFilter) {
       applyRelationSiteFilter(url, expectedHost);
     }
+    url.searchParams.set('populate[featured_image]', '*');
+    url.searchParams.set('populate[cover]', '*');
+    url.searchParams.set('populate[image]', '*');
 
     const response = await fetch(url.toString(), { headers });
     if (!response.ok) {
@@ -134,4 +174,9 @@ async function fetchPosts(opts = {}) {
   return allPosts;
 }
 
-module.exports = { fetchPosts };
+module.exports = {
+  fetchPosts,
+  assertSiteFilterConfig,
+  siteFilterDisabled,
+  getRelationFilterParts,
+};

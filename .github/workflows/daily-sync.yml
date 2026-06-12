@@ -1,4 +1,6 @@
 # yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+# Daily blog sync: 1 new post + refresh changed synced posts, then backfill same-site internal links.
+# API content includes cross-site links only; /blog/ links are injected locally (render + backfill).
 name: Daily Sync
 
 on:
@@ -11,21 +13,20 @@ concurrency:
   cancel-in-progress: true
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
-  deploy:
+  sync-and-deploy:
     runs-on: ubuntu-latest
     timeout-minutes: 45
 
     env:
       NODE_OPTIONS: --no-deprecation
-      # Repository Variables (Settings -> Secrets and variables -> Actions -> Variables).
-      # Defaults apply when a variable is unset. Double-quote so YAML does not misparse ":" in https URLs.
-      SITE_BASE_URL: "${{ vars.SITE_BASE_URL || 'https://longf88.com' }}"
-      BLOG_BASE_PATH: "${{ vars.BLOG_BASE_PATH || '/news' }}"
-      STRAPI_COLLECTION: "${{ vars.STRAPI_COLLECTION || 'posts' }}"
-      SITE_DOMAIN: "${{ vars.SITE_DOMAIN || 'longf88.com' }}"
+      SITE_BASE_URL: "${{ vars.SITE_BASE_URL }}"
+      BLOG_BASE_PATH: "${{ vars.BLOG_BASE_PATH }}"
+      STRAPI_COLLECTION: "${{ vars.STRAPI_COLLECTION }}"
+      SITE_DOMAIN: "${{ vars.SITE_DOMAIN }}"
+      SYNC_REQUIRE_SITE_FILTER: "1"
 
     steps:
       - name: Checkout repo
@@ -50,14 +51,48 @@ jobs:
           STRAPI_API_URL: ${{ secrets.STRAPI_API_URL }}
           STRAPI_API_TOKEN: ${{ secrets.STRAPI_API_TOKEN }}
 
-      - name: Sync content from Strapi
-        run: npm run sync
+      - name: Check site filter config
+        run: |
+          if [ -z "${SITE_DOMAIN:-}" ]; then
+            echo '::error::Configure repository variable SITE_DOMAIN (e.g. example.com).'
+            exit 1
+          fi
+          if [ "${SKIP_POSTS_SITE_FILTER:-}" = "1" ] || [ "${SKIP_POSTS_SITE_FILTER:-}" = "true" ] || [ "${SKIP_POSTS_SITE_FILTER:-}" = "yes" ]; then
+            echo '::error::SKIP_POSTS_SITE_FILTER must not be enabled for daily sync.'
+            exit 1
+          fi
+          npm run sync:doctor
         env:
           STRAPI_API_URL: ${{ secrets.STRAPI_API_URL }}
           STRAPI_API_TOKEN: ${{ secrets.STRAPI_API_TOKEN }}
+          SITE_DOMAIN: ${{ vars.SITE_DOMAIN }}
+          POSTS_COLLECTION: ${{ vars.STRAPI_COLLECTION }}
+          SYNC_REQUIRE_SITE_FILTER: "1"
 
-      - name: Generate internal links
+      - name: Daily sync (1 new + refresh changed)
+        run: npm run sync:daily
+        env:
+          STRAPI_API_URL: ${{ secrets.STRAPI_API_URL }}
+          STRAPI_API_TOKEN: ${{ secrets.STRAPI_API_TOKEN }}
+          SITE_DOMAIN: ${{ vars.SITE_DOMAIN }}
+          POSTS_COLLECTION: ${{ vars.STRAPI_COLLECTION }}
+          PUBLIC_SITE_ORIGIN: ${{ vars.SITE_BASE_URL }}
+          SYNC_REQUIRE_SITE_FILTER: "1"
+
+      - name: Backfill internal links
         run: npm run backfill
+
+      - name: Commit synced content
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/data/blogs.json sitemap.xml news/
+          if git diff --staged --quiet; then
+            echo "No content changes to commit."
+          else
+            git commit -m "chore: daily blog sync from Strapi"
+            git push
+          fi
 
       - name: Check Cloudflare secrets
         run: |

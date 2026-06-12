@@ -43,7 +43,9 @@
     <header class="page-hero">
       <div class="container">
         <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> / <a href="../index.html">News</a> / <span class="breadcrumb__current" aria-current="page">Article</span></nav>
-        <div class="page-hero__banner-slot page-hero__banner-slot--img-news article-hero__banner" aria-hidden="true"></div>
+        <figure class="article-hero__figure">
+          <img class="article-hero__img" src="{{FEATURED_IMAGE_REL}}" width="1672" height="941" alt="{{FEATURED_IMAGE_ALT}}" decoding="async">
+        </figure>
         <div class="article-hero__meta">
           <span>{{CATEGORY}}</span>
           <span>{{PUBLISHED_DATE_FORMATTED}}</span>
@@ -60,12 +62,6 @@
       </div>
     </header>
 
-    <section class="section article-visual">
-      <div class="container">
-        <div class="article-visual__bar article-visual__bar--brand" role="presentation" aria-hidden="true">{{FOCUS_KEYWORD}}</div>
-      </div>
-    </section>
-
     <article class="section section--alt blog-article__body">
       <div class="container prose article-prose">
         {{TOC_HTML}}
@@ -76,9 +72,26 @@
         </div>
 
         <section class="article-end-cta" aria-label="Call to action">
-          <h2 class="article-end-cta__title">Play smarter on LongFu88</h2>
-          <p class="article-end-cta__text">This guide summarizes what you&apos;ll find on LongFu88 &mdash; always confirm live offers inside your verified account.</p>
-          <a href="../../promotions.html" class="btn btn--gold">View promotions</a>
+          <div class="article-end-cta__inner">
+            <div class="article-end-cta__visual" aria-hidden="true">
+              <svg class="article-end-cta__icon" width="40" height="40"><use href="#icon-gift"/></svg>
+            </div>
+            <div class="article-end-cta__content">
+              <p class="article-end-cta__eyebrow">
+                <svg class="icon article-end-cta__eyebrow-icon" width="14" height="14" aria-hidden="true"><use href="#icon-sparkle"/></svg>
+                Next step on LongFu88
+              </p>
+              <h2 class="article-end-cta__title">Play smarter on LongFu88</h2>
+              <p class="article-end-cta__text">This guide summarizes what you&apos;ll find on LongFu88 &mdash; always confirm live offers inside your verified account.</p>
+            </div>
+            <div class="article-end-cta__action">
+              <a href="../../promotions.html" class="btn btn--gold btn--lg article-end-cta__btn">
+                <svg class="icon btn__icon" aria-hidden="true" width="18" height="18"><use href="#icon-gift"/></svg>
+                View promotions
+              </a>
+              <p class="article-end-cta__note">18+ &middot; Terms apply &middot; Play responsibly</p>
+            </div>
+          </div>
         </section>
       </div>
     </article>

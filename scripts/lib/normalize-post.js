@@ -1,5 +1,7 @@
 'use strict';
 
+const { extractFeaturedImageFromPost } = require('./blog-image.js');
+
 const INTENT_GRADIENTS = {
   navigational: 'linear-gradient(135deg, #1e40af 0%, #3b82f6 100%)',
   commercial: 'linear-gradient(135deg, #15803d 0%, #22c55e 100%)',
@@ -48,6 +50,7 @@ function normalizePost(strapiPost, opts = {}) {
     published_date: publishedDate,
     reading_time: formatReadingTime(strapiPost.reading_time),
     excerpt: strapiPost.shortDescription || strapiPost.excerpt || '',
+    featured_image: extractFeaturedImageFromPost(strapiPost) || '',
     placeholder_gradient: strapiPost.placeholder_gradient || gradient,
     related_posts: opts.relatedPosts || [],
 

@@ -12,7 +12,7 @@
     <symbol id="icon-globe" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm-1 18.9A8 8 0 014.1 13H8a12 12 0 002 6.9zM4.1 11A8 8 0 0111 3.1a12 12 0 00-2 6.9H4.1zm2 0h4.8a14 14 0 012.1-7.2A8 8 0 006.1 11zm7.8 0H19a8 8 0 00-6.9-7.2A14 14 0 0113.9 11zm0 2a14 14 0 01-2.1 7.2A8 8 0 0019 13h-5.1z"/></symbol>
     <symbol id="icon-shield" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l8 4v6c0 5-3.4 9.5-8 10-4.6-.5-8-5-8-10V6l8-4z"/></symbol>
     <symbol id="icon-gift" viewBox="0 0 24 24" fill="currentColor"><path d="M20 6h-2.17A3 3 0 0017 4h-1a3 3 0 00-2.82 2H4v2h16V6zm-7-2a1 1 0 011 1v1h-2V5a1 1 0 011-1zm5 8v10H4V12h14z"/></symbol>
-    <symbol id="icon-headset" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a7 7 0 00-7 7v4H4v6h3v-6H7V9a5 5 0 0110 0v4h-1v6h3v-6h-1V9a7 7 0 00-7-7z"/></symbol>
+    <symbol id="icon-headset" viewBox="0 0 24 24" fill="currentColor"><path d="M12 4a6 6 0 0 0-6 6v1.25c0 .69.56 1.25 1.25 1.25H8V11a4 4 0 1 1 8 0v1.5h.75c.69 0 1.25-.56 1.25-1.25V10a6 6 0 0 0-6-6z"/><path d="M5.25 13.25A1.75 1.75 0 0 0 3.5 15v2.75A1.75 1.75 0 0 0 5.25 19.5H7v-6.25H5.25z"/><path d="M18.75 13.25H17v6.25h1.75a1.75 1.75 0 0 0 1.75-1.75V15a1.75 1.75 0 0 0-1.75-1.75z"/></symbol>
     <symbol id="icon-check" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></symbol>
     <symbol id="icon-arrow-right" viewBox="0 0 24 24" fill="currentColor"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8-8-8z"/></symbol>
     <symbol id="icon-layers" viewBox="0 0 24 24" fill="currentColor"><path d="M12 4l8 4-8 4-8-4 8-4zm0 7l8 4-8 4-8-4 8-4z"/></symbol>

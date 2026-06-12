@@ -15,6 +15,7 @@
     "backfill-links": "node scripts/backfill-internal-links.js",
     "backfill:force": "node scripts/backfill-internal-links.js --force",
     "audit:links": "node scripts/audit-internal-links.js",
+    "fix:encoding": "node scripts/fix-encoding.js",
     "articles:refresh": "node scripts/refresh-article-pages.js",
     "deploy": "wrangler pages deploy . --project-name longf88 --branch main --commit-dirty=true",
     "cf:login": "wrangler login",

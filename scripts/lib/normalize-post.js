@@ -1,6 +1,7 @@
 'use strict';
 
 const { extractFeaturedImageFromPost } = require('./blog-image.js');
+const { sanitizeEncoding } = require('./sanitize-text.js');
 
 const INTENT_GRADIENTS = {
   navigational: 'linear-gradient(135deg, #1e40af 0%, #3b82f6 100%)',
@@ -41,25 +42,38 @@ function normalizePost(strapiPost, opts = {}) {
 
   return {
     slug,
-    title,
-    meta_title: strapiPost.meta_title || title,
-    meta_description: strapiPost.meta_description || strapiPost.shortDescription || '',
-    focus_keyword: strapiPost.primary_keyword || strapiPost.focus_keyword || title,
+    title: sanitizeEncoding(title),
+    meta_title: sanitizeEncoding(strapiPost.meta_title || title),
+    meta_description: sanitizeEncoding(strapiPost.meta_description || strapiPost.shortDescription || ''),
+    focus_keyword: sanitizeEncoding(strapiPost.primary_keyword || strapiPost.focus_keyword || title),
     category,
     search_intent: searchIntent.charAt(0).toUpperCase() + searchIntent.slice(1),
     published_date: publishedDate,
     reading_time: formatReadingTime(strapiPost.reading_time),
-    excerpt: strapiPost.shortDescription || strapiPost.excerpt || '',
+    excerpt: sanitizeEncoding(strapiPost.shortDescription || strapiPost.excerpt || ''),
     featured_image: extractFeaturedImageFromPost(strapiPost) || '',
     placeholder_gradient: strapiPost.placeholder_gradient || gradient,
     related_posts: opts.relatedPosts || [],
 
-    content: strapiPost.content || '',
-    toc_json: strapiPost.toc_json || [],
+    content: sanitizeEncoding(strapiPost.content || ''),
+    toc_json: sanitizeTocJson(strapiPost.toc_json || []),
     published_date_formatted: formatDateLong(publishedAt),
     updated_date_iso: formatDateISO(updatedAt),
     updated_at: updatedAtIso,
   };
+}
+
+function sanitizeTocJson(tocJson) {
+  if (!Array.isArray(tocJson)) return [];
+  return tocJson.map((item) => {
+    if (typeof item === 'string') return sanitizeEncoding(item);
+    if (!item || typeof item !== 'object') return item;
+    const next = { ...item };
+    for (const key of ['text', 'label', 'title']) {
+      if (typeof next[key] === 'string') next[key] = sanitizeEncoding(next[key]);
+    }
+    return next;
+  });
 }
 
 function toIsoTimestamp(val) {

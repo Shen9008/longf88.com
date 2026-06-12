@@ -20,6 +20,7 @@ if (!String(process.env.BLOG_BASE_PATH || '').trim()) {
 
 const { renderArticle } = require('./lib/render-article.js');
 const { formatDateLong, formatDateISO } = require('./lib/normalize-post.js');
+const { sanitizeEncoding } = require('./lib/sanitize-text.js');
 const { getBlogSegment } = require('./lib/site-origin.js');
 
 const BLOGS_PATH = path.join(ROOT, 'assets/data/blogs.json');
@@ -89,7 +90,7 @@ function run() {
       continue;
     }
     const html = fs.readFileSync(htmlPath, 'utf8');
-    const content = extractBody(html);
+    const content = sanitizeEncoding(extractBody(html));
     if (!content) {
       console.warn('Skip (no body markers):', entry.slug);
       continue;

@@ -1,16 +1,30 @@
 <footer class="footer">
     <div class="container">
-        <div class="footer__grid">
+        <div class="footer__mast">
             <div class="footer__brand">
                 <a href="index.html" class="logo logo--footer" aria-label="LongFu88 home">
                     <img class="logo__img logo__img--footer" src="images/logo.png" width="229" height="50" alt="LongFu88 casino and sportsbook — longf88.com" loading="lazy" decoding="async">
                 </a>
-                <p class="footer__lead"><strong>LongFu88</strong> positions a deep online casino catalogue, multilingual live studios and Asia-calibrated handicap sports betting inside a single treasury built for commuter evenings across Southeast Asia. <strong>longf88.com</strong> is the editorial annex for anyone researching keywords like LongFu88, Long Fu&nbsp;88 or <em>longfu88</em> &mdash; we translate lobby scale (~1,520+ headline titles), banking lanes (~17 families) and bonus mechanics into accountable English. Real-money registration, KYC and chip custody stay exclusively on authenticated LongFu88 apps. <strong>18+ only</strong>; treat play as budgeted entertainment.</p>
-                <p class="footer__meta"><a href="about.html">About LongFu88 &amp; this site</a> &middot; Offers vary by market &mdash; confirm in your account &middot; <a href="https://github.com/Shen9008/longf88.com" target="_blank" rel="noopener noreferrer">Site source</a></p>
-                <p class="footer__contact"><strong>Contact us:</strong> <a href="mailto:support@longf88.com">support@longf88.com</a> &middot; <a href="about.html#contact">About &amp; contact</a></p>
+                <p class="footer__tagline"><strong>LongFu88</strong> casino &amp; sportsbook guides for Southeast Asia on <strong>longf88.com</strong> &mdash; slots (~940+), live dealers, Asian handicaps and ~17 payment families in plain English for anyone searching LongFu88, Long Fu&nbsp;88 or <em>longfu88</em>.</p>
+                <p class="footer__note">Editorial hub only. Registration, KYC and real-money play stay on authenticated LongFu88 apps. Offers vary by market &mdash; confirm in your account. <strong>18+ only</strong>; treat play as budgeted entertainment.</p>
+                <div class="footer__chips">
+                    <a class="footer__chip" href="about.html">About this site</a>
+                    <a class="footer__chip" href="about.html#contact">Contact</a>
+                    <a class="footer__chip" href="https://github.com/Shen9008/longf88.com" target="_blank" rel="noopener noreferrer">Site source</a>
+                </div>
             </div>
-            <div class="footer__column">
-                <h2 class="footer__heading"><svg class="icon footer__heading-icon" aria-hidden="true" width="18" height="18"><use href="#icon-slots"/></svg> Play</h2>
+            <a class="footer__mail" href="mailto:support@longf88.com">
+                <span class="footer__mail-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24"><use href="#icon-headset"/></svg></span>
+                <span class="footer__mail-body">
+                    <span class="footer__mail-label">Contact us</span>
+                    <span class="footer__mail-addr">support@longf88.com</span>
+                </span>
+            </a>
+        </div>
+
+        <div class="footer__panels">
+            <nav class="footer__panel" aria-labelledby="footer-nav-play">
+                <h2 class="footer__panel-title" id="footer-nav-play"><svg class="icon footer__panel-icon" aria-hidden="true" width="16" height="16"><use href="#icon-slots"/></svg> Play</h2>
                 <ul class="footer__links">
                     <li><a href="slots.html">Online slots</a></li>
                     <li><a href="live-casino.html">Live casino</a></li>
@@ -18,9 +32,9 @@
                     <li><a href="promotions.html">Promotions</a></li>
                     <li><a href="news/index.html">News &amp; guides</a></li>
                 </ul>
-            </div>
-            <div class="footer__column">
-                <h2 class="footer__heading"><svg class="icon footer__heading-icon" aria-hidden="true" width="18" height="18"><use href="#icon-cards"/></svg> Essentials</h2>
+            </nav>
+            <nav class="footer__panel" aria-labelledby="footer-nav-essentials">
+                <h2 class="footer__panel-title" id="footer-nav-essentials"><svg class="icon footer__panel-icon" aria-hidden="true" width="16" height="16"><use href="#icon-cards"/></svg> Essentials</h2>
                 <ul class="footer__links">
                     <li><a href="payments.html">Payments &amp; withdrawals</a></li>
                     <li><a href="licensing.html">Licensing &amp; trust</a></li>
@@ -28,15 +42,15 @@
                     <li><a href="about.html">About this site</a></li>
                     <li><a href="sitemap.xml">XML sitemap</a></li>
                 </ul>
-            </div>
-            <div class="footer__column">
-                <h2 class="footer__heading"><svg class="icon footer__heading-icon" aria-hidden="true" width="18" height="18"><use href="#icon-shield"/></svg> Safety</h2>
+            </nav>
+            <nav class="footer__panel" aria-labelledby="footer-nav-safety">
+                <h2 class="footer__panel-title" id="footer-nav-safety"><svg class="icon footer__panel-icon" aria-hidden="true" width="16" height="16"><use href="#icon-shield"/></svg> Safety</h2>
                 <ul class="footer__links">
                     <li><a href="responsible-gambling.html">Responsible gambling</a></li>
                     <li><a href="terms.html">Terms &amp; conditions</a></li>
                     <li><a href="privacy.html">Privacy</a></li>
                 </ul>
-            </div>
+            </nav>
         </div>
 
         <div class="age-strip">
@@ -44,40 +58,31 @@
             <p>Gambling can unravel quickly. Never stake cash meant for bills or rainy-day savings. If things spiral, step away, lean on limits inside your operator account, and speak with someone independent&mdash;the links below aren't LongFu88.</p>
         </div>
 
-        <nav class="footer__trust-strip" aria-label="External trust resources">
-            <span class="footer__trust-label">Independent resources:</span>
-            <a href="https://www.begambleaware.org" target="_blank" rel="nofollow noopener noreferrer">BeGambleAware</a>
-            <a href="https://www.gamblingtherapy.org" target="_blank" rel="nofollow noopener noreferrer">Gambling Therapy</a>
-            <a href="https://www.gamcare.org.uk" target="_blank" rel="nofollow noopener noreferrer">GamCare</a>
-            <a href="https://www.ncpgambling.org" target="_blank" rel="nofollow noopener noreferrer">NCPG</a>
-            <a href="https://www.ecogra.org" target="_blank" rel="nofollow noopener noreferrer">eCOGRA</a>
-            <a href="https://www.itechlabs.com" target="_blank" rel="nofollow noopener noreferrer">iTech Labs</a>
-            <a href="https://www.mga.org.mt" target="_blank" rel="nofollow noopener noreferrer">MGA</a>
-        </nav>
-
-        <div class="trust-grid">
-            <h2 class="trust-grid__title">Further reading &amp; regulators</h2>
-            <p class="trust-grid__intro">Bookmark these if you want to read up on licences, game testing, or getting help&mdash;they are useful whether you are new to LongFu88 or have been playing for years.</p>
-            <div class="trust-grid__cols">
-                <div class="trust-card">
-                    <h3 class="trust-card__title">Responsible support</h3>
-                    <ul class="trust-card__list">
+        <div class="footer__resources">
+            <header class="footer__resources-head">
+                <h2 class="footer__resources-title">Further reading &amp; regulators</h2>
+                <p class="footer__resources-desc">Independent hubs for licences, game testing, and help &mdash; useful whether you are new to LongFu88 or have played for years.</p>
+            </header>
+            <div class="footer__resource-grid">
+                <div class="footer__resource">
+                    <h3 class="footer__resource-label">Responsible support</h3>
+                    <ul class="footer__resource-links">
                         <li><a href="https://www.begambleaware.org" target="_blank" rel="nofollow noopener noreferrer">BeGambleAware</a></li>
                         <li><a href="https://www.gamblingtherapy.org" target="_blank" rel="nofollow noopener noreferrer">Gambling Therapy</a></li>
                         <li><a href="https://www.responsiblegambling.org" target="_blank" rel="nofollow noopener noreferrer">Responsible Gambling Council</a></li>
                     </ul>
                 </div>
-                <div class="trust-card">
-                    <h3 class="trust-card__title">Regulators &amp; policy</h3>
-                    <ul class="trust-card__list">
+                <div class="footer__resource">
+                    <h3 class="footer__resource-label">Regulators &amp; policy</h3>
+                    <ul class="footer__resource-links">
                         <li><a href="https://www.mga.org.mt" target="_blank" rel="nofollow noopener noreferrer">Malta Gaming Authority</a></li>
                         <li><a href="https://www.gamblingcommission.gov.uk" target="_blank" rel="nofollow noopener noreferrer">UK Gambling Commission</a></li>
                         <li><a href="https://www.iclg.com/practice-areas/gambling-laws-and-regulations" target="_blank" rel="nofollow noopener noreferrer">ICLG gambling law overview</a></li>
                     </ul>
                 </div>
-                <div class="trust-card">
-                    <h3 class="trust-card__title">Testing &amp; integrity</h3>
-                    <ul class="trust-card__list">
+                <div class="footer__resource">
+                    <h3 class="footer__resource-label">Testing &amp; integrity</h3>
+                    <ul class="footer__resource-links">
                         <li><a href="https://www.ecogra.org" target="_blank" rel="nofollow noopener noreferrer">eCOGRA</a></li>
                         <li><a href="https://www.gaminglabs.com" target="_blank" rel="nofollow noopener noreferrer">GLI</a></li>
                         <li><a href="https://www.ibia.bet" target="_blank" rel="nofollow noopener noreferrer">IBIA</a></li>
@@ -88,7 +93,7 @@
 
         <div class="footer__bottom">
             <p class="footer__copy">&copy; 2026 longf88.com. Informational content for eligible adults only.</p>
-            <p class="footer__legal"><a href="terms.html">Terms</a> · <a href="privacy.html">Privacy</a> · <a href="responsible-gambling.html">Responsible gambling</a></p>
+            <p class="footer__legal"><a href="terms.html">Terms</a><span aria-hidden="true">&middot;</span><a href="privacy.html">Privacy</a><span aria-hidden="true">&middot;</span><a href="responsible-gambling.html">Responsible gambling</a></p>
         </div>
     </div>
 </footer>

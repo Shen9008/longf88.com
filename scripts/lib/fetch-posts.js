@@ -52,7 +52,10 @@ function getRelationFilterParts() {
 function applyRelationSiteFilter(url, hostname) {
   const { rel, domainAttr } = getRelationFilterParts();
   url.searchParams.set(`filters[${rel}][${domainAttr}][$eq]`, hostname);
-  url.searchParams.set(`populate[${rel}]`, process.env.STRAPI_SITE_POPULATE || '*');
+  const sitePopulate = process.env.STRAPI_SITE_POPULATE;
+  if (sitePopulate != null && String(sitePopulate).trim() !== '') {
+    url.searchParams.set(`populate[${rel}]`, sitePopulate);
+  }
 }
 
 /** Default Strapi media field on post types (camelCase). Override via STRAPI_MEDIA_POPULATE. */
@@ -70,9 +73,86 @@ function getMediaPopulateFields() {
 
 function applyMediaPopulate(url) {
   for (const field of getMediaPopulateFields()) {
-    // Strapi v5 media: populate[field]=* fails; nested populate is required.
-    url.searchParams.set(`populate[${field}][populate]`, '*');
+    // Strapi v5: populate[field]=* fails; request only URL fields needed for sync.
+    url.searchParams.set(`populate[${field}][fields][0]`, 'url');
+    url.searchParams.set(`populate[${field}][fields][1]`, 'formats');
   }
+}
+
+const RETRYABLE_HTTP_STATUS = new Set([408, 429, 500, 502, 503, 504]);
+
+function getFetchRetryConfig() {
+  const max = parseInt(process.env.STRAPI_FETCH_RETRIES || '5', 10);
+  const delayMs = parseInt(process.env.STRAPI_FETCH_RETRY_DELAY_MS || '2000', 10);
+  return {
+    maxRetries: Number.isNaN(max) || max < 0 ? 5 : max,
+    delayMs: Number.isNaN(delayMs) || delayMs < 0 ? 2000 : delayMs,
+  };
+}
+
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function isRetryableNetworkError(err) {
+  if (!err || typeof err !== 'object') return false;
+  const code = err.code;
+  return (
+    err.name === 'TypeError'
+    || code === 'ECONNRESET'
+    || code === 'ECONNREFUSED'
+    || code === 'ETIMEDOUT'
+    || code === 'EAI_AGAIN'
+  );
+}
+
+/**
+ * @param {string|URL} url
+ * @param {RequestInit} init
+ * @returns {Promise<Response>}
+ */
+async function fetchStrapiWithRetry(url, init = {}) {
+  const { maxRetries, delayMs } = getFetchRetryConfig();
+  const target = url instanceof URL ? url.toString() : url;
+  let lastError;
+
+  for (let attempt = 0; attempt <= maxRetries; attempt++) {
+    try {
+      const response = await fetch(target, init);
+      if (response.ok) return response;
+
+      const snippet = (await response.text()).slice(0, 400);
+      const err = new Error(
+        `Strapi API error: ${response.status} ${response.statusText}${snippet ? ` — ${snippet}` : ''}`,
+      );
+
+      if (!RETRYABLE_HTTP_STATUS.has(response.status) || attempt >= maxRetries) {
+        throw err;
+      }
+
+      lastError = err;
+      const wait = delayMs * (2 ** attempt);
+      console.warn(
+        `Strapi request failed (${response.status}), retrying in ${wait}ms `
+        + `(attempt ${attempt + 1}/${maxRetries})…`,
+      );
+      await sleep(wait);
+    } catch (err) {
+      if (!isRetryableNetworkError(err) || attempt >= maxRetries) {
+        throw err;
+      }
+
+      lastError = err;
+      const wait = delayMs * (2 ** attempt);
+      console.warn(
+        `Strapi network error (${err.code || err.message}), retrying in ${wait}ms `
+        + `(attempt ${attempt + 1}/${maxRetries})…`,
+      );
+      await sleep(wait);
+    }
+  }
+
+  throw lastError || new Error('Strapi API request failed after retries');
 }
 
 function assertSiteFilterConfig() {
@@ -143,13 +223,7 @@ async function fetchPosts(opts = {}) {
     }
     applyMediaPopulate(url);
 
-    const response = await fetch(url.toString(), { headers });
-    if (!response.ok) {
-      const snippet = (await response.text()).slice(0, 400);
-      throw new Error(
-        `Strapi API error: ${response.status} ${response.statusText}${snippet ? ` — ${snippet}` : ''}`,
-      );
-    }
+    const response = await fetchStrapiWithRetry(url, { headers });
 
     const data = await response.json();
     const raw = Array.isArray(data) ? data : (data.data || []);
@@ -192,8 +266,40 @@ async function fetchPosts(opts = {}) {
   return allPosts;
 }
 
+/**
+ * Lightweight API probe using the same filters/populate as fetchPosts page 1.
+ * @returns {Promise<void>}
+ */
+async function probeStrapiApi(opts = {}) {
+  const base = (opts.baseUrl || API_BASE).replace(/\/+$/, '');
+  const collection = opts.collection || API_COLLECTION;
+  const url = new URL(`${base}/${collection}`);
+  url.searchParams.set('sort', 'publishedAt:asc');
+  url.searchParams.set('pagination[page]', '1');
+  url.searchParams.set('pagination[pageSize]', '1');
+
+  const expectedHost = getSyncSiteHostname();
+  const useRelationApiFilter =
+    expectedHost &&
+    !siteFilterDisabled() &&
+    getSiteFilterStyle() === 'relation';
+  if (useRelationApiFilter) {
+    applyRelationSiteFilter(url, expectedHost);
+  }
+  applyMediaPopulate(url);
+
+  const headers = {};
+  if (API_TOKEN) {
+    headers['Authorization'] = `Bearer ${API_TOKEN}`;
+  }
+
+  await fetchStrapiWithRetry(url, { headers });
+}
+
 module.exports = {
   fetchPosts,
+  probeStrapiApi,
+  fetchStrapiWithRetry,
   assertSiteFilterConfig,
   siteFilterDisabled,
   getRelationFilterParts,

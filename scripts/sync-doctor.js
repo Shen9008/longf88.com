@@ -7,6 +7,7 @@ require('./lib/load-env.js');
 const { ROOT } = require('./lib/load-env.js');
 
 const { getBlogSegment, getSiteOrigin, getSyncSiteHostname } = require('./lib/site-origin.js');
+const { probeStrapiApi } = require('./lib/fetch-posts.js');
 
 function siteFilterSkipped() {
   return /^(1|true|yes)$/i.test(process.env.STRAPI_SKIP_SITE_FILTER || '')
@@ -72,6 +73,20 @@ function main() {
 
   assertStrictSiteFilter();
   console.log('Configuration OK.');
+
+  if (process.env.STRAPI_API_URL && process.env.STRAPI_API_TOKEN) {
+    probeStrapiApi()
+      .then(() => {
+        console.log('Strapi API probe OK.');
+      })
+      .catch((err) => {
+        console.error(`Strapi API probe failed: ${err.message}`);
+        process.exit(1);
+      });
+    return;
+  }
+
+  console.log('Strapi API probe skipped (STRAPI_API_URL or STRAPI_API_TOKEN not set).');
 }
 
 main();

@@ -2,7 +2,7 @@
     <div class="container">
         <div class="footer__mast">
             <div class="footer__brand">
-                <a href="index.html" class="logo logo--footer" aria-label="LongFu88 home">
+                <a href="/" class="logo logo--footer" aria-label="LongFu88 home">
                     <img class="logo__img logo__img--footer" src="images/logo.png" width="229" height="50" alt="LongFu88 casino and sportsbook — longf88.com" loading="lazy" decoding="async">
                 </a>
                 <p class="footer__tagline"><strong>LongFu88</strong> casino &amp; sportsbook guides for Southeast Asia on <strong>longf88.com</strong> &mdash; slots (~940+), live dealers, Asian handicaps and ~17 payment families in plain English for anyone searching LongFu88, Long Fu&nbsp;88 or <em>longfu88</em>.</p>
@@ -30,7 +30,7 @@
                     <li><a href="live-casino.html">Live casino</a></li>
                     <li><a href="sports-betting.html">Sports betting</a></li>
                     <li><a href="promotions.html">Promotions</a></li>
-                    <li><a href="news/index.html">News &amp; guides</a></li>
+                    <li><a href="/news/">News &amp; guides</a></li>
                 </ul>
             </nav>
             <nav class="footer__panel" aria-labelledby="footer-nav-essentials">

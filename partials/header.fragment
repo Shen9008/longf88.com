@@ -1,16 +1,16 @@
 <header class="header">
     <div class="header__inner container">
-        <a href="index.html" class="logo" aria-label="LongFu88 — longf88.com Asia hub">
+        <a href="/" class="logo" aria-label="LongFu88 — longf88.com Asia hub">
             <img class="logo__img" src="images/logo.png" width="229" height="50" alt="LongFu88 casino and sportsbook — longf88.com" decoding="async">
         </a>
         <nav class="nav" aria-label="Main navigation">
             <ul class="nav__list">
-                <li><a href="index.html" class="nav__link" data-nav="index"><svg class="icon nav__icon" aria-hidden="true" width="14" height="14"><use href="#icon-home"/></svg> Home</a></li>
+                <li><a href="/" class="nav__link" data-nav="index"><svg class="icon nav__icon" aria-hidden="true" width="14" height="14"><use href="#icon-home"/></svg> Home</a></li>
                 <li><a href="slots.html" class="nav__link" data-nav="slots"><svg class="icon nav__icon" aria-hidden="true" width="14" height="14"><use href="#icon-slots"/></svg> Slots</a></li>
                 <li><a href="live-casino.html" class="nav__link" data-nav="live-casino"><svg class="icon nav__icon" aria-hidden="true" width="14" height="14"><use href="#icon-live"/></svg> Live casino</a></li>
                 <li><a href="sports-betting.html" class="nav__link" data-nav="sports-betting"><svg class="icon nav__icon" aria-hidden="true" width="14" height="14"><use href="#icon-sports"/></svg> Sports</a></li>
                 <li><a href="promotions.html" class="nav__link" data-nav="promotions"><svg class="icon nav__icon" aria-hidden="true" width="14" height="14"><use href="#icon-promo"/></svg> Promotions</a></li>
-                <li><a href="news/index.html" class="nav__link" data-nav="blog"><svg class="icon nav__icon" aria-hidden="true" width="14" height="14"><use href="#icon-book"/></svg> News</a></li>
+                <li><a href="/news/" class="nav__link" data-nav="blog"><svg class="icon nav__icon" aria-hidden="true" width="14" height="14"><use href="#icon-book"/></svg> News</a></li>
                 <li><a href="about.html" class="nav__link" data-nav="about"><svg class="icon nav__icon" aria-hidden="true" width="14" height="14"><use href="#icon-info"/></svg> About</a></li>
             </ul>
         </nav>
@@ -24,12 +24,12 @@
 </header>
 <nav class="mobile-menu" aria-label="Mobile menu">
     <ul class="mobile-menu__list">
-        <li><a href="index.html" class="mobile-menu__link" data-nav="index"><svg class="icon mobile-menu__icon" aria-hidden="true" width="18" height="18"><use href="#icon-home"/></svg> Home</a></li>
+        <li><a href="/" class="mobile-menu__link" data-nav="index"><svg class="icon mobile-menu__icon" aria-hidden="true" width="18" height="18"><use href="#icon-home"/></svg> Home</a></li>
         <li><a href="slots.html" class="mobile-menu__link" data-nav="slots"><svg class="icon mobile-menu__icon" aria-hidden="true" width="18" height="18"><use href="#icon-slots"/></svg> Slots</a></li>
         <li><a href="live-casino.html" class="mobile-menu__link" data-nav="live-casino"><svg class="icon mobile-menu__icon" aria-hidden="true" width="18" height="18"><use href="#icon-live"/></svg> Live casino</a></li>
         <li><a href="sports-betting.html" class="mobile-menu__link" data-nav="sports-betting"><svg class="icon mobile-menu__icon" aria-hidden="true" width="18" height="18"><use href="#icon-sports"/></svg> Sports</a></li>
         <li><a href="promotions.html" class="mobile-menu__link" data-nav="promotions"><svg class="icon mobile-menu__icon" aria-hidden="true" width="18" height="18"><use href="#icon-promo"/></svg> Promotions</a></li>
-        <li><a href="news/index.html" class="mobile-menu__link" data-nav="blog"><svg class="icon mobile-menu__icon" aria-hidden="true" width="18" height="18"><use href="#icon-book"/></svg> News</a></li>
+        <li><a href="/news/" class="mobile-menu__link" data-nav="blog"><svg class="icon mobile-menu__icon" aria-hidden="true" width="18" height="18"><use href="#icon-book"/></svg> News</a></li>
         <li><a href="about.html" class="mobile-menu__link" data-nav="about"><svg class="icon mobile-menu__icon" aria-hidden="true" width="18" height="18"><use href="#icon-info"/></svg> About</a></li>
     </ul>
     <div class="mobile-menu__extra" aria-label="More on this site">

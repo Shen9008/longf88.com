@@ -42,43 +42,31 @@
 
 
 
-    function comparePostsByRecency(a, b) {
-
-        var aHasSync = Boolean(a.synced_at);
-
-        var bHasSync = Boolean(b.synced_at);
-
-        if (aHasSync && !bHasSync) return -1;
-
-        if (!aHasSync && bHasSync) return 1;
-
-        if (aHasSync && bHasSync) {
-
-            var sync =
-
-                new Date(b.synced_at).getTime() - new Date(a.synced_at).getTime();
-
-            if (sync !== 0) return sync;
-
+    function sortBlogPosts(posts) {
+        if (typeof window !== 'undefined' && typeof window.sortPostsByRecency === 'function') {
+            return window.sortPostsByRecency(posts);
         }
-
-        var pub =
-
-            new Date(b.published_date || 0).getTime() - new Date(a.published_date || 0).getTime();
-
-        if (pub !== 0) return pub;
-
-        var cms =
-
-            new Date(b.cms_updated_at || 0).getTime() - new Date(a.cms_updated_at || 0).getTime();
-
-        if (cms !== 0) return cms;
-
-        return String(b.slug || '').localeCompare(String(a.slug || ''));
-
+        return posts.slice().sort(function (a, b) {
+            var aHasSync = Boolean(a && a.synced_at);
+            var bHasSync = Boolean(b && b.synced_at);
+            if (aHasSync && !bHasSync) return -1;
+            if (!aHasSync && bHasSync) return 1;
+            if (aHasSync && bHasSync) {
+                var sync =
+                    new Date(b.synced_at).getTime() - new Date(a.synced_at).getTime();
+                if (sync !== 0) return sync;
+            }
+            var pub =
+                new Date((b && b.published_date) || 0).getTime() -
+                new Date((a && a.published_date) || 0).getTime();
+            if (pub !== 0) return pub;
+            var cms =
+                new Date((b && b.cms_updated_at) || 0).getTime() -
+                new Date((a && a.cms_updated_at) || 0).getTime();
+            if (cms !== 0) return cms;
+            return String((b && b.slug) || '').localeCompare(String((a && a.slug) || ''));
+        });
     }
-
-
 
     function relatedPostsFor(blogs, slug) {
 
@@ -128,7 +116,7 @@
 
 
 
-        var sorted = blogs.slice().sort(comparePostsByRecency);
+        var sorted = sortBlogPosts(blogs);
 
         sorted.forEach(function (b) {
 
@@ -164,7 +152,7 @@
 
         var base = computeAssetBase(window.location.pathname || '');
 
-        var jsonUrl = base + 'assets/data/blogs.json?v=sync-sort-2';
+        var jsonUrl = base + 'assets/data/blogs.json?v=sync-sort-3';
 
 
 

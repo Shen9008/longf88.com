@@ -3,6 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 const { getSiteOrigin, getBlogSegment } = require('./site-origin.js');
+const { sortPostsByRecency } = require('./sort-posts.js');
 
 const ROOT = path.resolve(__dirname, '../..');
 const SITEMAP_PATH = path.join(ROOT, 'sitemap.xml');
@@ -30,6 +31,8 @@ function generateSitemap(opts = {}) {
   } catch (err) {
     throw new Error(`Failed to read blogs.json: ${err.message}`);
   }
+
+  blogs = sortPostsByRecency(blogs);
 
   let sitemap = fs.readFileSync(sitemapPath, 'utf8');
 

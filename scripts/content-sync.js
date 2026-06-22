@@ -13,6 +13,7 @@ const { renderArticle } = require('./lib/render-article.js');
 const { generateSitemap } = require('./lib/generate-sitemap.js');
 const { hashContent, getCmsUpdatedAt, postChanged } = require('./lib/content-hash.js');
 const { getBlogSegment, getSiteOrigin, getSyncSiteHostname } = require('./lib/site-origin.js');
+const { comparePostsByRecency, sortPostsByRecency } = require('./lib/sort-posts.js');
 
 const BLOGS_JSON_PATH = path.join(ROOT, 'assets/data/blogs.json');
 
@@ -53,33 +54,6 @@ function toBlogsEntry(normalized, raw) {
   entry.content_hash = hashContent(raw.content);
   entry.cms_updated_at = getCmsUpdatedAt(raw);
   return entry;
-}
-
-function comparePostsByRecency(a, b) {
-  const aHasSync = Boolean(a.synced_at);
-  const bHasSync = Boolean(b.synced_at);
-  if (aHasSync && !bHasSync) return -1;
-  if (!aHasSync && bHasSync) return 1;
-
-  if (aHasSync && bHasSync) {
-    const sync =
-      new Date(b.synced_at).getTime() - new Date(a.synced_at).getTime();
-    if (sync !== 0) return sync;
-  }
-
-  const pub =
-    new Date(b.published_date || 0).getTime() - new Date(a.published_date || 0).getTime();
-  if (pub !== 0) return pub;
-
-  const cms =
-    new Date(b.cms_updated_at || 0).getTime() - new Date(a.cms_updated_at || 0).getTime();
-  if (cms !== 0) return cms;
-
-  return String(b.slug || '').localeCompare(String(a.slug || ''));
-}
-
-function sortBlogsForDisplay(blogs) {
-  return [...blogs].sort(comparePostsByRecency);
 }
 
 function getRelatedSlugs(blogs, currentSlug, opts = {}, limit = 3) {
@@ -262,6 +236,10 @@ async function run() {
     } else {
       console.log('Nothing to sync (no new posts and no changed posts).');
     }
+    const sorted = sortPostsByRecency(existingBlogs);
+    saveBlogsJson(sorted);
+    generateSitemap();
+    console.log('blogs.json re-sorted (latest sync first).');
     return;
   }
 
@@ -275,7 +253,7 @@ async function run() {
     processPost(raw, blogs, isUpdate);
   }
 
-  saveBlogsJson(sortBlogsForDisplay(blogs));
+  saveBlogsJson(sortPostsByRecency(blogs));
   generateSitemap();
   console.log('Done. blogs.json and sitemap.xml updated.');
 }

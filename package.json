@@ -11,6 +11,7 @@
     "sync:force": "node scripts/content-sync.js --force",
     "sync:daily": "node scripts/content-sync.js --daily",
     "sync:doctor": "node scripts/sync-doctor.js",
+    "sort:blogs": "node scripts/sort-blogs-json.js",
     "backfill": "node scripts/backfill-internal-links.js",
     "backfill-links": "node scripts/backfill-internal-links.js",
     "backfill:force": "node scripts/backfill-internal-links.js --force",

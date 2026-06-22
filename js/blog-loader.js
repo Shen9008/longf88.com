@@ -223,8 +223,11 @@
     }
 
     function comparePostsByRecency(a, b) {
-        var aHasSync = Boolean(a.synced_at);
-        var bHasSync = Boolean(b.synced_at);
+        if (typeof window !== 'undefined' && typeof window.comparePostsByRecency === 'function') {
+            return window.comparePostsByRecency(a, b);
+        }
+        var aHasSync = Boolean(a && a.synced_at);
+        var bHasSync = Boolean(b && b.synced_at);
         if (aHasSync && !bHasSync) return -1;
         if (!aHasSync && bHasSync) return 1;
         if (aHasSync && bHasSync) {
@@ -233,12 +236,21 @@
             if (sync !== 0) return sync;
         }
         var pub =
-            new Date(b.published_date || 0).getTime() - new Date(a.published_date || 0).getTime();
+            new Date((b && b.published_date) || 0).getTime() -
+            new Date((a && a.published_date) || 0).getTime();
         if (pub !== 0) return pub;
         var cms =
-            new Date(b.cms_updated_at || 0).getTime() - new Date(a.cms_updated_at || 0).getTime();
+            new Date((b && b.cms_updated_at) || 0).getTime() -
+            new Date((a && a.cms_updated_at) || 0).getTime();
         if (cms !== 0) return cms;
-        return String(b.slug || '').localeCompare(String(a.slug || ''));
+        return String((b && b.slug) || '').localeCompare(String((a && a.slug) || ''));
+    }
+
+    function sortBlogPosts(posts) {
+        if (typeof window !== 'undefined' && typeof window.sortPostsByRecency === 'function') {
+            return window.sortPostsByRecency(posts);
+        }
+        return posts.slice().sort(comparePostsByRecency);
     }
 
     function renderFeatured(valid, featuredEl, featuredSection) {
@@ -265,7 +277,7 @@
         if (!grid) return;
 
         var base = computeAssetBase(window.location.pathname || '');
-        var jsonUrl = base + 'assets/data/blogs.json?v=sync-sort-2';
+        var jsonUrl = base + 'assets/data/blogs.json?v=sync-sort-3';
 
         fetch(jsonUrl, { credentials: 'same-origin' })
             .then(function (r) {
@@ -293,7 +305,7 @@
                     status.classList.remove('news-hub__status--empty');
                 }
 
-                blogs.sort(comparePostsByRecency);
+                blogs = sortBlogPosts(blogs);
 
                 var valid = blogs.filter(function (p) {
                     return (p.slug || '').trim().length > 0;

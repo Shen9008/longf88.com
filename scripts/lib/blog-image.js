@@ -4,10 +4,10 @@
 const DEFAULT_BLOG_IMAGE = 'images/blog-default.png';
 
 const STRAPI_MEDIA_FIELDS = [
+  'featuredImage',
   'featured_image',
   'cover',
   'coverImage',
-  'featuredImage',
   'image',
   'thumbnail',
 ];

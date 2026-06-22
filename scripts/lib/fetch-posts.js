@@ -55,6 +55,26 @@ function applyRelationSiteFilter(url, hostname) {
   url.searchParams.set(`populate[${rel}]`, process.env.STRAPI_SITE_POPULATE || '*');
 }
 
+/** Default Strapi media field on post types (camelCase). Override via STRAPI_MEDIA_POPULATE. */
+const DEFAULT_MEDIA_POPULATE_FIELDS = ['featuredImage'];
+
+/** Comma-separated Strapi media attribute names. Unset/empty → featuredImage; none/0/false → skip populate. */
+function getMediaPopulateFields() {
+  const raw = process.env.STRAPI_MEDIA_POPULATE;
+  if (raw != null && /^(none|0|false)$/i.test(String(raw).trim())) return [];
+  if (raw != null && String(raw).trim() !== '') {
+    return raw.split(',').map((s) => s.trim()).filter(Boolean);
+  }
+  return DEFAULT_MEDIA_POPULATE_FIELDS;
+}
+
+function applyMediaPopulate(url) {
+  for (const field of getMediaPopulateFields()) {
+    // Strapi v5 media: populate[field]=* fails; nested populate is required.
+    url.searchParams.set(`populate[${field}][populate]`, '*');
+  }
+}
+
 function assertSiteFilterConfig() {
   if (!/^(1|true|yes)$/i.test(process.env.SYNC_REQUIRE_SITE_FILTER || '')) {
     return;
@@ -121,9 +141,7 @@ async function fetchPosts(opts = {}) {
     if (useRelationApiFilter) {
       applyRelationSiteFilter(url, expectedHost);
     }
-    url.searchParams.set('populate[featured_image]', '*');
-    url.searchParams.set('populate[cover]', '*');
-    url.searchParams.set('populate[image]', '*');
+    applyMediaPopulate(url);
 
     const response = await fetch(url.toString(), { headers });
     if (!response.ok) {

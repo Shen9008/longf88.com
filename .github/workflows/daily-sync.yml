@@ -26,6 +26,7 @@ jobs:
       BLOG_BASE_PATH: "${{ vars.BLOG_BASE_PATH }}"
       STRAPI_COLLECTION: "${{ vars.STRAPI_COLLECTION }}"
       SITE_DOMAIN: "${{ vars.SITE_DOMAIN }}"
+      STRAPI_MEDIA_POPULATE: "${{ vars.STRAPI_MEDIA_POPULATE }}"
       SYNC_REQUIRE_SITE_FILTER: "1"
 
     steps:

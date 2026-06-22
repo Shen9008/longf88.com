@@ -19,7 +19,12 @@ if (!String(process.env.BLOG_BASE_PATH || '').trim()) {
  * From BLOG_BASE_PATH; sanitized. Default "blog".
  */
 function getBlogSegment() {
-  const raw = (process.env.BLOG_BASE_PATH || 'blog').trim();
+  const raw = (process.env.BLOG_BASE_PATH || '').trim();
+  if (!raw) {
+    const newsHub = path.join(ROOT, 'news', 'index.html');
+    if (fs.existsSync(newsHub)) return 'news';
+    return 'blog';
+  }
   const segment = raw.replace(/^\/+|\/+$/g, '');
   if (!segment || !/^[a-z0-9][a-z0-9-]*$/i.test(segment)) {
     return 'blog';

@@ -15,7 +15,7 @@
             </ul>
         </nav>
         <div class="header__actions">
-            <a href="promotions.html" class="btn btn--gold btn--sm header__cta"><svg class="icon btn__icon" aria-hidden="true" width="16" height="16"><use href="#icon-sparkle"/></svg> <span class="header__cta-text header__cta-text--long">Explore offers</span><span class="header__cta-text header__cta-text--short">Offers</span></a>
+            <a href="https://lngf.lynmonkel.com/?mid=360537_2218139" data-signup-link class="btn btn--gold btn--sm header__cta" target="_blank" rel="noopener noreferrer sponsored"><svg class="icon btn__icon" aria-hidden="true" width="16" height="16"><use href="#icon-sparkle"/></svg> <span class="header__cta-text header__cta-text--long">Join LongFu88</span><span class="header__cta-text header__cta-text--short">Join</span></a>
             <button class="mobile-menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">
                 <svg class="icon" width="24" height="24" aria-hidden="true"><use href="#icon-menu"/></svg>
             </button>
@@ -31,6 +31,7 @@
         <li><a href="promotions.html" class="mobile-menu__link" data-nav="promotions"><svg class="icon mobile-menu__icon" aria-hidden="true" width="18" height="18"><use href="#icon-promo"/></svg> Promotions</a></li>
         <li><a href="/news/" class="mobile-menu__link" data-nav="blog"><svg class="icon mobile-menu__icon" aria-hidden="true" width="18" height="18"><use href="#icon-book"/></svg> News</a></li>
         <li><a href="about.html" class="mobile-menu__link" data-nav="about"><svg class="icon mobile-menu__icon" aria-hidden="true" width="18" height="18"><use href="#icon-info"/></svg> About</a></li>
+        <li><a href="https://lngf.lynmonkel.com/?mid=360537_2218139" data-signup-link class="mobile-menu__link mobile-menu__link--join" target="_blank" rel="noopener noreferrer sponsored"><svg class="icon mobile-menu__icon" aria-hidden="true" width="18" height="18"><use href="#icon-sparkle"/></svg> Join LongFu88</a></li>
     </ul>
     <div class="mobile-menu__extra" aria-label="More on this site">
         <p class="mobile-menu__extra-label">Essentials</p>

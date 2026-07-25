@@ -1,0 +1,11 @@
+<div class="region-cta" role="group" aria-label="Join LongFu88 by region">
+    <p class="region-cta__label">Join LongFu88 in your region</p>
+    <div class="region-cta__grid">
+        <a href="https://lngf.lynmonkel.com/?mid=360537_2218141" data-signup-region="sg" class="btn btn--gold region-cta__btn" target="_blank" rel="noopener noreferrer sponsored"><span class="region-cta__code">SG</span> Singapore</a>
+        <a href="https://lngf.lynmonkel.com/?mid=360537_2218139" data-signup-region="my" class="btn btn--gold region-cta__btn" target="_blank" rel="noopener noreferrer sponsored"><span class="region-cta__code">MY</span> Malaysia</a>
+        <a href="https://lngf.lynmonkel.com/?mid=360537_2218138" data-signup-region="id" class="btn btn--gold region-cta__btn" target="_blank" rel="noopener noreferrer sponsored"><span class="region-cta__code">ID</span> Indonesia</a>
+        <a href="https://lngf.lynmonkel.com/?mid=360537_2218137" data-signup-region="vn" class="btn btn--gold region-cta__btn" target="_blank" rel="noopener noreferrer sponsored"><span class="region-cta__code">VN</span> Vietnam</a>
+        <a href="https://lngf.lynmonkel.com/?mid=360537_2218140" data-signup-region="th" class="btn btn--gold region-cta__btn" target="_blank" rel="noopener noreferrer sponsored"><span class="region-cta__code">TH</span> Thailand</a>
+    </div>
+    <p class="region-cta__note">18+ &middot; Terms apply &middot; Play responsibly</p>
+</div>

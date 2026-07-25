@@ -26,6 +26,30 @@
 
     var base = computeAssetBase(pathname);
 
+    var SIGNUP_URLS = {
+        default: 'https://lngf.lynmonkel.com/?mid=360537_2218139',
+        sg: 'https://lngf.lynmonkel.com/?mid=360537_2218141',
+        my: 'https://lngf.lynmonkel.com/?mid=360537_2218139',
+        id: 'https://lngf.lynmonkel.com/?mid=360537_2218138',
+        vn: 'https://lngf.lynmonkel.com/?mid=360537_2218137',
+        th: 'https://lngf.lynmonkel.com/?mid=360537_2218140'
+    };
+
+    function applySignupLinks(root) {
+        (root || document).querySelectorAll('[data-signup-link]').forEach(function (el) {
+            el.setAttribute('href', SIGNUP_URLS.default);
+            el.setAttribute('target', '_blank');
+            el.setAttribute('rel', 'noopener noreferrer sponsored');
+        });
+        (root || document).querySelectorAll('[data-signup-region]').forEach(function (el) {
+            var region = (el.getAttribute('data-signup-region') || '').toLowerCase();
+            var url = SIGNUP_URLS[region] || SIGNUP_URLS.default;
+            el.setAttribute('href', url);
+            el.setAttribute('target', '_blank');
+            el.setAttribute('rel', 'noopener noreferrer sponsored');
+        });
+    }
+
     function rewriteLinks(html) {
         if (!base) return html;
         html = html.replace(/\shref="([^"]+)"/g, function (full, href) {
@@ -119,6 +143,7 @@
     }
 
     function run() {
+        applySignupLinks(document);
         injectSpriteFromFile()
             .catch(function () {
                 injectSpriteFallback();
@@ -149,12 +174,14 @@
                 }
                 if (footerPh) footerPh.outerHTML = footerHtml;
                 setActiveNav();
+                applySignupLinks(document);
 
                 var main = document.getElementById('main-content');
                 if (main) {
                     fetch(base + 'partials/cta-banner.fragment').then(function (r) { return r.text(); }).then(function (html) {
                         var first = main.querySelector('section');
                         if (first) first.insertAdjacentHTML('afterend', rewriteLinks(html));
+                        applySignupLinks(main);
                         if (typeof window.lf88AttachReveal === 'function') {
                             window.lf88AttachReveal(main);
                         }

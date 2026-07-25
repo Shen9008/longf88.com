@@ -516,6 +516,11 @@ img {
     color: var(--lf-red-dark);
 }
 
+.mobile-menu__link--join {
+    color: var(--lf-red-dark);
+    font-weight: 700;
+}
+
 .mobile-menu__extra {
     padding-top: 0.85rem;
     margin-top: 0.5rem;
@@ -2193,6 +2198,135 @@ img {
     .cta-banner__visual {
         align-self: center;
     }
+
+    .cta-banner__signup {
+        align-items: center;
+        width: 100%;
+    }
+}
+
+/* Regional signup CTAs */
+.region-cta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    width: 100%;
+}
+
+.region-cta__label {
+    margin: 0;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--lf-subtle);
+}
+
+.region-cta__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.55rem;
+    width: 100%;
+}
+
+.region-cta__btn {
+    justify-content: center;
+    gap: 0.4rem;
+    min-height: 2.5rem;
+    font-size: 0.88rem;
+    font-weight: 600;
+}
+
+.region-cta__code {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.65rem;
+    padding: 0.1rem 0.35rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.18);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+}
+
+.region-cta--compact .region-cta__grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.region-cta--compact .region-cta__btn {
+    min-height: 2.25rem;
+    padding-inline: 0.35rem;
+}
+
+.region-cta--compact .region-cta__code {
+    min-width: auto;
+    padding: 0;
+    background: transparent;
+    font-size: 0.82rem;
+}
+
+.region-cta__note {
+    margin: 0;
+    font-size: 0.78rem;
+    color: var(--lf-subtle);
+    line-height: 1.45;
+}
+
+.region-cta--hero {
+    margin-top: 1rem;
+    padding: 1rem;
+    border: 1px solid rgba(220, 38, 38, 0.14);
+    border-radius: var(--lf-radius-lg);
+    background: rgba(255, 255, 255, 0.72);
+    box-shadow: var(--lf-shadow);
+}
+
+@media (min-width: 640px) {
+    .region-cta__grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .region-cta--hero .region-cta__grid {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 700px) {
+    .cta-banner__signup {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 0.75rem;
+        flex-shrink: 0;
+        min-width: 12rem;
+    }
+
+    .cta-banner__primary {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .region-cta--compact {
+        align-items: flex-end;
+    }
+}
+
+.cta-banner__signup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 100%;
+}
+
+.cta-banner__primary {
+    width: 100%;
+    justify-content: center;
+}
+
+.region-cta--article {
+    width: 100%;
+    margin-top: 0.35rem;
 }
 
 /* Blog article (/news/slug/) — site container width + brand styling */

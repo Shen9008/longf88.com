@@ -2,6 +2,14 @@
   "brand": "LongFu88",
   "domain": "https://longf88.com",
   "tagline": "Casino, live tables & sports — one wallet, player-focused guides",
+  "signupLinks": {
+    "default": "https://lngf.lynmonkel.com/?mid=360537_2218139",
+    "sg": "https://lngf.lynmonkel.com/?mid=360537_2218141",
+    "my": "https://lngf.lynmonkel.com/?mid=360537_2218139",
+    "id": "https://lngf.lynmonkel.com/?mid=360537_2218138",
+    "vn": "https://lngf.lynmonkel.com/?mid=360537_2218137",
+    "th": "https://lngf.lynmonkel.com/?mid=360537_2218140"
+  },
   "stats": {
     "totalGames": "1,520+",
     "gameCategories": "15",

@@ -1,5 +1,5 @@
 /**
- * longf88.com — load SVG sprite, header, footer, optional CTA after first main section.
+ * longf88.com — load SVG sprite, header, footer, optional CTA after first main child.
  * body[data-page] sets active nav. Works from site root (add ../ for subfolders later).
  * Partials use .fragment (not .html) so VS Code Live Server cannot inject SVG-breaking reload scripts into fetch() responses (see vscode-live-server #182 / #684).
  */
@@ -179,8 +179,11 @@
                 var main = document.getElementById('main-content');
                 if (main) {
                     fetch(base + 'partials/cta-banner.fragment').then(function (r) { return r.text(); }).then(function (html) {
-                        var first = main.querySelector('section');
-                        if (first) first.insertAdjacentHTML('afterend', rewriteLinks(html));
+                        // Insert after the first direct child of main (hero / page-hero).
+                        // Do not use querySelector('section') — on blog pages the first
+                        // <section> is nested inside .prose and breaks the banner layout.
+                        var anchor = main.firstElementChild;
+                        if (anchor) anchor.insertAdjacentHTML('afterend', rewriteLinks(html));
                         applySignupLinks(main);
                         if (typeof window.lf88AttachReveal === 'function') {
                             window.lf88AttachReveal(main);

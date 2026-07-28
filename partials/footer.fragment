@@ -8,7 +8,7 @@
                 <p class="footer__tagline"><strong>LongFu88</strong> casino &amp; sportsbook guides for Southeast Asia on <strong>longf88.com</strong> &mdash; slots (~940+), live dealers, Asian handicaps and ~17 payment families in plain English for anyone searching LongFu88, Long Fu&nbsp;88 or <em>longfu88</em>.</p>
                 <p class="footer__note">Editorial hub only. Registration, KYC and real-money play stay on authenticated LongFu88 apps. Offers vary by market &mdash; confirm in your account. <strong>18+ only</strong>; treat play as budgeted entertainment.</p>
                 <div class="footer__chips">
-                    <a class="footer__chip" href="about.html">About this site</a>
+                    <a class="footer__chip" href="/about">About this site</a>
                     <a class="footer__chip" href="about.html#contact">Contact</a>
                     <a class="footer__chip" href="https://github.com/Shen9008/longf88.com" target="_blank" rel="noopener noreferrer">Site source</a>
                 </div>
@@ -26,29 +26,29 @@
             <nav class="footer__panel" aria-labelledby="footer-nav-play">
                 <h2 class="footer__panel-title" id="footer-nav-play"><svg class="icon footer__panel-icon" aria-hidden="true" width="16" height="16"><use href="#icon-slots"/></svg> Play</h2>
                 <ul class="footer__links">
-                    <li><a href="slots.html">Online slots</a></li>
-                    <li><a href="live-casino.html">Live casino</a></li>
-                    <li><a href="sports-betting.html">Sports betting</a></li>
-                    <li><a href="promotions.html">Promotions</a></li>
+                    <li><a href="/slots">Online slots</a></li>
+                    <li><a href="/live-casino">Live casino</a></li>
+                    <li><a href="/sports-betting">Sports betting</a></li>
+                    <li><a href="/promotions">Promotions</a></li>
                     <li><a href="/news/">News &amp; guides</a></li>
                 </ul>
             </nav>
             <nav class="footer__panel" aria-labelledby="footer-nav-essentials">
                 <h2 class="footer__panel-title" id="footer-nav-essentials"><svg class="icon footer__panel-icon" aria-hidden="true" width="16" height="16"><use href="#icon-cards"/></svg> Essentials</h2>
                 <ul class="footer__links">
-                    <li><a href="payments.html">Payments &amp; withdrawals</a></li>
-                    <li><a href="licensing.html">Licensing &amp; trust</a></li>
-                    <li><a href="help.html">Help centre</a></li>
-                    <li><a href="about.html">About this site</a></li>
+                    <li><a href="/payments">Payments &amp; withdrawals</a></li>
+                    <li><a href="/licensing">Licensing &amp; trust</a></li>
+                    <li><a href="/help">Help centre</a></li>
+                    <li><a href="/about">About this site</a></li>
                     <li><a href="sitemap.xml">XML sitemap</a></li>
                 </ul>
             </nav>
             <nav class="footer__panel" aria-labelledby="footer-nav-safety">
                 <h2 class="footer__panel-title" id="footer-nav-safety"><svg class="icon footer__panel-icon" aria-hidden="true" width="16" height="16"><use href="#icon-shield"/></svg> Safety</h2>
                 <ul class="footer__links">
-                    <li><a href="responsible-gambling.html">Responsible gambling</a></li>
-                    <li><a href="terms.html">Terms &amp; conditions</a></li>
-                    <li><a href="privacy.html">Privacy</a></li>
+                    <li><a href="/responsible-gambling">Responsible gambling</a></li>
+                    <li><a href="/terms">Terms &amp; conditions</a></li>
+                    <li><a href="/privacy">Privacy</a></li>
                 </ul>
             </nav>
         </div>
@@ -93,7 +93,7 @@
 
         <div class="footer__bottom">
             <p class="footer__copy">&copy; 2026 longf88.com. Informational content for eligible adults only.</p>
-            <p class="footer__legal"><a href="terms.html">Terms</a><span aria-hidden="true">&middot;</span><a href="privacy.html">Privacy</a><span aria-hidden="true">&middot;</span><a href="responsible-gambling.html">Responsible gambling</a></p>
+            <p class="footer__legal"><a href="/terms">Terms</a><span aria-hidden="true">&middot;</span><a href="/privacy">Privacy</a><span aria-hidden="true">&middot;</span><a href="/responsible-gambling">Responsible gambling</a></p>
         </div>
     </div>
 </footer>

@@ -128,6 +128,14 @@
         }
     }
 
+    function setListingRobots(page) {
+        var meta =
+            document.getElementById('meta-robots') ||
+            document.querySelector('meta[name="robots"]');
+        if (!meta) return;
+        meta.setAttribute('content', page > 1 ? 'noindex, follow' : 'index, follow');
+    }
+
     /** @returns {(number|null)[]} null = ellipsis gap */
     function pageSequence(totalPages, current) {
         if (totalPages <= 9) {
@@ -320,6 +328,7 @@
                     page = totalPages;
                     syncUrlToPage(page);
                 }
+                setListingRobots(page);
 
                 var start = (page - 1) * PAGE_SIZE;
                 var end = Math.min(start + PAGE_SIZE, total);

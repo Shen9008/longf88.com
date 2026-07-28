@@ -157,7 +157,7 @@ function buildArticleJsonLdScript(origin, blogSeg, normalized, faqItems) {
         '@type': 'ContactPoint',
         contactType: 'customer support',
         email: 'support@longf88.com',
-        url: `${origin}/help.html`,
+        url: `${origin}/help`,
         availableLanguage: ['en'],
       },
     },

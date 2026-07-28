@@ -9,20 +9,20 @@
         <div class="card-grid card-grid--3">
             <article class="feature-card">
                 <div class="feature-card__icon" aria-hidden="true"><svg width="24" height="24" class="feature-card__icon-svg"><use href="#icon-slots"/></svg></div>
-                <h3 class="feature-card__title"><a href="slots.html">Slots catalogue</a></h3>
+                <h3 class="feature-card__title"><a href="/slots">Slots catalogue</a></h3>
                 <p class="feature-card__text">Volatility scouting, RTP literacy and bonus-buy guardrails framed for cramped thumb sessions &mdash; not miracle promises.</p>
             </article>
             <article class="feature-card">
                 <div class="feature-card__icon" aria-hidden="true"><svg width="24" height="24" class="feature-card__icon-svg"><use href="#icon-live"/></svg></div>
-                <h3 class="feature-card__title"><a href="live-casino.html">Live casino floors</a></h3>
+                <h3 class="feature-card__title"><a href="/live-casino">Live casino floors</a></h3>
                 <p class="feature-card__text">Squeeze choreography, etiquette and LTE-friendly streaming behaviours before you escalate stake units.</p>
             </article>
             <article class="feature-card">
                 <div class="feature-card__icon" aria-hidden="true"><svg width="24" height="24" class="feature-card__icon-svg"><use href="#icon-sports"/></svg></div>
-                <h3 class="feature-card__title"><a href="sports-betting.html">Sportsbook canvas</a></h3>
+                <h3 class="feature-card__title"><a href="/sports-betting">Sportsbook canvas</a></h3>
                 <p class="feature-card__text">Fixtures fans already watch plus Asian handicap nuance tethered alongside casino chips &mdash; no wallet hopping mid-half.</p>
             </article>
         </div>
-        <p class="explore-footnote"><a href="promotions.html">Decode promotions calmly</a> · <a href="payments.html">Compare cashier rails pragmatically</a></p>
+        <p class="explore-footnote"><a href="/promotions">Decode promotions calmly</a> · <a href="/payments">Compare cashier rails pragmatically</a></p>
     </div>
 </section>

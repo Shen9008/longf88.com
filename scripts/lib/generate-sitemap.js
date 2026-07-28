@@ -38,7 +38,14 @@ function generateSitemap(opts = {}) {
 
   const blogUrls = blogs.map((b) => {
     const slug = b.slug || '';
-    const lastmod = b.published_date || '2025-01-01';
+    // Prefer freshest ISO date Google can use for recrawl prioritization
+    const raw =
+      b.updated_date_iso ||
+      b.synced_at ||
+      b.cms_updated_at ||
+      b.published_date ||
+      '2025-01-01';
+    const lastmod = String(raw).slice(0, 10);
     return `  <url>
     <loc>${blogBase}${slug}/</loc>
     <lastmod>${lastmod}</lastmod>

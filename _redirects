@@ -1,29 +1,42 @@
-# Canonical host & protocol
+# Host / protocol → https://longf88.com (final), single hop where Pages sees the request
 http://longf88.com/* https://longf88.com/:splat 301
 http://www.longf88.com/* https://longf88.com/:splat 301
 https://www.longf88.com/* https://longf88.com/:splat 301
 
-# Homepage: strip index.html
-/index.html / 301
-/index.html/ / 301
+# Homepage aliases
+/index.html https://longf88.com/ 301
+/index.html/ https://longf88.com/ 301
 
-# Legacy /blog/ hub pages → root guides (must precede article rule)
-/blog/index.html / 301
-/blog/ /news/ 301
-/blog/live-casino.html /live-casino.html 301
-/blog/slots.html /slots.html 301
-/blog/sports-betting.html /sports-betting.html 301
-/blog/promotions.html /promotions.html 301
-/blog/payments.html /payments.html 301
-/blog/licensing.html /licensing.html 301
-/blog/about.html /about.html 301
-/blog/help.html /help.html 301
-/blog/responsible-gambling.html /responsible-gambling.html 301
-/blog/terms.html /terms.html 301
-/blog/privacy.html /privacy.html 301
+# Legacy /blog/ hub pages → final extensionless URLs (before /blog/:slug rule)
+/blog/index.html https://longf88.com/news/ 301
+/blog/ https://longf88.com/news/ 301
+/blog/live-casino.html https://longf88.com/live-casino 301
+/blog/slots.html https://longf88.com/slots 301
+/blog/sports-betting.html https://longf88.com/sports-betting 301
+/blog/promotions.html https://longf88.com/promotions 301
+/blog/payments.html https://longf88.com/payments 301
+/blog/licensing.html https://longf88.com/licensing 301
+/blog/about.html https://longf88.com/about 301
+/blog/help.html https://longf88.com/help 301
+/blog/responsible-gambling.html https://longf88.com/responsible-gambling 301
+/blog/terms.html https://longf88.com/terms 301
+/blog/privacy.html https://longf88.com/privacy 301
 
 # Legacy /blog/ articles → /news/{slug}/
-/blog/:slug.html /news/:slug/ 301
+/blog/:slug.html https://longf88.com/news/:slug/ 301
 
 # News trailing slash
-/news /news/ 301
+/news https://longf88.com/news/ 301
+
+# Hub .html aliases → extensionless (covers CF/internal links still using .html)
+/slots.html https://longf88.com/slots 301
+/live-casino.html https://longf88.com/live-casino 301
+/sports-betting.html https://longf88.com/sports-betting 301
+/promotions.html https://longf88.com/promotions 301
+/payments.html https://longf88.com/payments 301
+/licensing.html https://longf88.com/licensing 301
+/about.html https://longf88.com/about 301
+/help.html https://longf88.com/help 301
+/responsible-gambling.html https://longf88.com/responsible-gambling 301
+/terms.html https://longf88.com/terms 301
+/privacy.html https://longf88.com/privacy 301

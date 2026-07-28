@@ -11,6 +11,7 @@ const { fetchPosts } = require('./lib/fetch-posts.js');
 const { normalizePost, validatePost } = require('./lib/normalize-post.js');
 const { renderArticle } = require('./lib/render-article.js');
 const { generateSitemap } = require('./lib/generate-sitemap.js');
+const { injectNewsHubIndex } = require('./lib/inject-news-hub-index.js');
 const { hashContent, getCmsUpdatedAt, postChanged } = require('./lib/content-hash.js');
 const { getBlogSegment, getSiteOrigin, getSyncSiteHostname } = require('./lib/site-origin.js');
 const { comparePostsByRecency, sortPostsByRecency } = require('./lib/sort-posts.js');
@@ -239,6 +240,7 @@ async function run() {
     const sorted = sortPostsByRecency(existingBlogs);
     saveBlogsJson(sorted);
     generateSitemap();
+    injectNewsHubIndex();
     console.log('blogs.json re-sorted (latest sync first).');
     return;
   }
@@ -255,7 +257,8 @@ async function run() {
 
   saveBlogsJson(sortPostsByRecency(blogs));
   generateSitemap();
-  console.log('Done. blogs.json and sitemap.xml updated.');
+  injectNewsHubIndex();
+  console.log('Done. blogs.json, sitemap.xml, and news hub index updated.');
 }
 
 run().catch((err) => {

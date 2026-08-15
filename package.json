@@ -19,6 +19,7 @@
     "audit:links": "node scripts/audit-internal-links.js",
     "fix:encoding": "node scripts/fix-encoding.js",
     "articles:refresh": "node scripts/refresh-article-pages.js",
+    "indexnow:submit": "node scripts/submit-indexnow.js",
     "deploy": "wrangler pages deploy . --project-name longf88 --branch main --commit-dirty=true",
     "cf:login": "wrangler login",
     "cf:logout": "wrangler logout",
